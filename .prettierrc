@@ -3,7 +3,7 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "jsxSingleQuote": true,
-  "semi": false,
+  "semi": true,
   "importOrder": [
     "^@core/(.*)$",
     "<THIRD_PARTY_MODULES>",

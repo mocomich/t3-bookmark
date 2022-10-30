@@ -1,11 +1,11 @@
-import type { NextPage } from "next"
-import { signIn, signOut, useSession } from "next-auth/react"
-import Head from "next/head"
+import type { NextPage } from "next";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Head from "next/head";
 
-import { trpc } from "../utils/trpc"
+import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" })
+  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
 
   return (
     <>
@@ -57,15 +57,15 @@ const Home: NextPage = () => {
         <AuthShowcase />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const AuthShowcase: React.FC = () => {
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery()
+  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
 
-  const { data: sessionData } = useSession()
+  const { data: sessionData } = useSession();
 
   return (
     <div className='flex flex-col items-center justify-center gap-2'>
@@ -84,14 +84,14 @@ const AuthShowcase: React.FC = () => {
         {sessionData ? "Sign out" : "Sign in"}
       </button>
     </div>
-  )
-}
+  );
+};
 
 type TechnologyCardProps = {
-  name: string
-  description: string
-  documentation: string
-}
+  name: string;
+  description: string;
+  documentation: string;
+};
 
 const TechnologyCard = ({
   name,
@@ -111,5 +111,5 @@ const TechnologyCard = ({
         Documentation
       </a>
     </section>
-  )
-}
+  );
+};
