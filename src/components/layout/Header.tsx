@@ -1,8 +1,8 @@
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 
-import { Button } from "../ui-parts/Button";
-import { Link } from "../ui-parts/Link";
+import { Button } from "../util-elements/Button";
+import { Link } from "../util-elements/Link";
 
 export const Header: React.FC = () => {
   const LinkRoot = [{ href: "/", title: "Add New" }] as const;
