@@ -10,7 +10,7 @@ type Props = {
   imageId: number;
 };
 
-export const Card: React.FC<Props> = ({ title, url, imageId }) => {
+export const Article: React.FC<Props> = ({ title, url, imageId }) => {
   return (
     <article css={styles.container}>
       <div css={styles.top}>

@@ -2,7 +2,7 @@ import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 
-import { Card } from "./Article";
+import { Article } from "./Article";
 
 const bookmarks = [
   {
@@ -25,7 +25,7 @@ const bookmarks = [
   },
 ];
 
-export const CardList: React.FC = () => {
+export const ArticleList: React.FC = () => {
   return (
     <div css={styles.container}>
       <div className='mt-8'>
@@ -33,7 +33,7 @@ export const CardList: React.FC = () => {
       </div>
       <div className='mt-8' css={styles.bookmarks}>
         {bookmarks.map((bookmark) => (
-          <Card
+          <Article
             key={bookmark.id}
             title={bookmark.title}
             url={bookmark.url}
