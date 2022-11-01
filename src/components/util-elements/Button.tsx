@@ -1,4 +1,4 @@
-import { COLORS } from "@/styles/config/colors";
+import { COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 
 type Props = {

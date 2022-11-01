@@ -1,5 +1,5 @@
-import { COLORS } from "@/styles/config/colors";
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "@/styles/config/sizes";
+import { COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 
 import { Footer } from "./Footer";
