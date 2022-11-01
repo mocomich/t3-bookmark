@@ -1,4 +1,5 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
+import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import Image from "next/image";
@@ -36,18 +37,17 @@ export const Card: React.FC<Props> = ({ title, url, imageId }) => {
 
 const styles = {
   container: css({
-    background: "white",
+    background: COLORS.white,
     borderRadius: "6px",
     width: "100%",
     height: "180px",
-    boxShadow:
-      "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+    boxShadow: BOX_SHADOW.md,
     display: "grid",
-    gridTemplateColumns: "auto 100px",
+    gridTemplateColumns: "auto 110px",
     gridTemplateRows: "70% auto",
     columnGap: vwCalcFn(20),
     alignItems: "center",
-    padding: "12px",
+    padding: "12px 20px",
   }),
   top: css({
     fontSize: "20px",
@@ -61,6 +61,8 @@ const styles = {
   }),
   right: css({
     width: "100%",
+    background: COLORS.offWhite,
+    boxShadow: BOX_SHADOW.md,
     aspectRatio: "1/1",
     gridArea: "1 / 2 / 3 / 3",
     display: "flex",

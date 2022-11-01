@@ -2,7 +2,7 @@ import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 
-import { Card } from "./Card";
+import { Card } from "./Article";
 
 const bookmarks = [
   {
