@@ -9,5 +9,6 @@
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "prettier"
-  ]
+  ],
+  "rules": { "react/display-name": "off" }
 }
