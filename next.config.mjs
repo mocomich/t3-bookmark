@@ -21,4 +21,7 @@ export default defineNextConfig({
     locales: ["ja"],
     defaultLocale: "ja",
   },
+  images: {
+    domains: ["lh3.googleusercontent.com"],
+  },
 });
