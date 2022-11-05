@@ -3,7 +3,7 @@ import { COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 
 import { Footer } from "./Footer";
-import { Header } from "./Header";
+import { Header } from "./header/Header";
 
 type Props = {
   children: React.ReactNode;
