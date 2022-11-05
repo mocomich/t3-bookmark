@@ -1,4 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react";
+import { memo } from "react";
 
 type Map = {
   key: string;
@@ -10,7 +11,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const TypoGraphy: React.FC<Props> = ({ variant, children }) => {
+export const TypoGraphy: React.FC<Props> = memo(({ variant, children }) => {
   const variantSetting: Map[] = [
     { key: "h1", class: css({ fontSize: "32px", fontWeight: "bold" }) },
     { key: "h2", class: css({ fontSize: "28px", fontWeight: "bold" }) },
@@ -40,4 +41,4 @@ export const TypoGraphy: React.FC<Props> = ({ variant, children }) => {
       )}
     </>
   );
-};
+});

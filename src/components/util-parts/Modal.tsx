@@ -1,6 +1,7 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css, keyframes } from "@emotion/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { memo } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -8,14 +9,14 @@ type Props = {
   setOpen: (open: boolean) => void;
 };
 
-export const Modal: React.FC<Props> = ({ children, open, setOpen }) => (
+export const Modal: React.FC<Props> = memo(({ children, open, setOpen }) => (
   <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
     <DialogPrimitive.Portal>
       <div css={styles.overlay} onClick={(prev) => setOpen(!prev)} />
       <div css={styles.content}>{children}</div>
     </DialogPrimitive.Portal>
   </DialogPrimitive.Root>
-);
+));
 
 const overlayShow = keyframes({
   "0%": { opacity: 0 },

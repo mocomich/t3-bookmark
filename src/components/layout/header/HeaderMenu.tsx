@@ -1,7 +1,8 @@
 import { Button } from "@/components/util-elements/Button";
 import { signIn } from "next-auth/react";
+import { memo } from "react";
 
-export const HeaderMenu: React.FC = () => {
+export const HeaderMenu: React.FC = memo(() => {
   return (
     <>
       {/* //:TODO GOOGLEとGithubのアイコン設置 */}
@@ -17,4 +18,4 @@ export const HeaderMenu: React.FC = () => {
       </div>
     </>
   );
-};
+});

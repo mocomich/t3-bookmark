@@ -1,6 +1,7 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
+import { memo } from "react";
 
 import { Article } from "./Article";
 
@@ -25,7 +26,7 @@ const bookmarks = [
   },
 ];
 
-export const ArticleList: React.FC = () => {
+export const ArticleList: React.FC = memo(() => {
   return (
     <div css={styles.container}>
       <div className='mt-8'>
@@ -44,7 +45,7 @@ export const ArticleList: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 const styles = {
   container: css({

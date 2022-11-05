@@ -5,12 +5,13 @@ import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { memo } from "react";
 
 import { Avatar } from "./Avatar";
 import { DropdownMenu } from "./DropDownMenu";
 import { HeaderMenu } from "./HeaderMenu";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(() => {
   const router = useRouter();
   const { data: session } = useSession();
   const { open, setOpen, onClickOpen } = useModal();
@@ -48,7 +49,7 @@ export const Header: React.FC = () => {
       </Modal>
     </header>
   );
-};
+});
 
 const styles = {
   header: css({
