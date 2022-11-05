@@ -6,19 +6,19 @@ import { Article } from "./Article";
 
 const bookmarks = [
   {
-    id: 1,
+    id: "1",
     title: "title A",
     url: "https://zenn.dev/mocomichi/articles/47c95425bc28d5",
     imageId: 7,
   },
   {
-    id: 2,
+    id: "2",
     title: "title A",
     url: "https://zenn.dev/mocomichi/articles/47c95425bc28d5",
     imageId: 2,
   },
   {
-    id: 3,
+    id: "3",
     title: "title A",
     url: "https://zenn.dev/mocomichi/articles/47c95425bc28d5",
     imageId: 3,
@@ -35,6 +35,7 @@ export const ArticleList: React.FC = () => {
         {bookmarks.map((bookmark) => (
           <Article
             key={bookmark.id}
+            id={bookmark.id}
             title={bookmark.title}
             url={bookmark.url}
             imageId={bookmark.imageId}
