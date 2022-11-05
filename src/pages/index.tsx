@@ -1,7 +1,12 @@
+import { ArticleList } from "@/components/bookmark/ArticleList";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <div>HELLO</div>;
+  return (
+    <section>
+      <ArticleList />
+    </section>
+  );
 };
 
 export default Home;
