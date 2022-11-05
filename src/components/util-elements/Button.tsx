@@ -5,12 +5,14 @@ type Props = {
   children: React.ReactNode;
   size: "small" | "medium" | "large";
   color?: "gray" | "blue" | "green" | "red";
+  onClick?: () => void;
 };
 
 export const Button: React.FC<Props> = ({
   children,
   size,
   color = "green",
+  onClick,
 }) => {
   const baseStyle = css({
     width: "100%",
@@ -31,5 +33,9 @@ export const Button: React.FC<Props> = ({
     }),
   };
 
-  return <button css={styles[size]}>{children}</button>;
+  return (
+    <button css={styles[size]} onClick={onClick}>
+      {children}
+    </button>
+  );
 };
