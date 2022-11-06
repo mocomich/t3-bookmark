@@ -1,13 +1,27 @@
+import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css, keyframes } from "@emotion/react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { memo } from "react";
+import { AiFillSetting } from "react-icons/ai";
+import { IoBook } from "react-icons/io5";
+import { RiLogoutBoxRFill } from "react-icons/ri";
 
 const LinkRoot = [
-  { href: "/mypage", title: "My Page", index: 1 },
-  { href: "/mypage/settings", title: "Setting", index: 2 },
+  {
+    href: "/mypage",
+    title: "My Page",
+    icon: <IoBook size={18} className='mr-2 mt-1' />,
+    index: 1,
+  },
+  {
+    href: "/mypage/settings",
+    title: "Setting",
+    icon: <AiFillSetting size={18} className='mr-2' />,
+    index: 2,
+  },
 ] as const;
 
 type LinkHref = typeof LinkRoot[number]["href"];
@@ -19,18 +33,24 @@ export const DropDownMenuContent: React.FC = memo(() => {
   };
 
   return (
-    <DropdownMenuPrimitive.Content css={styles.content}>
+    <DropdownMenuPrimitive.Content
+      css={styles.content}
+      align={"start"}
+      sideOffset={30}
+    >
       {LinkRoot.map((root) => (
         <DropdownMenuPrimitive.Item
           css={styles.item}
           key={root.index}
           onClick={() => onClickToLinkMenu(root.href)}
         >
-          {root.title}
+          {root.icon}
+          <TypoGraphy variant='medium'>{root.title}</TypoGraphy>
         </DropdownMenuPrimitive.Item>
       ))}
       <DropdownMenuPrimitive.Item onClick={() => signOut()} css={styles.item}>
-        ログアウト
+        <RiLogoutBoxRFill size={18} className='mr-2' />
+        <TypoGraphy variant='medium'>ログアウト</TypoGraphy>
       </DropdownMenuPrimitive.Item>
     </DropdownMenuPrimitive.Content>
   );
@@ -77,8 +97,9 @@ const styles = {
   item: css({
     display: "flex",
     justifyContent: "flex-start",
+    alignItems: "center",
     width: "100%",
-    padding: "8px",
+    padding: "8px 12px",
     ":hover": {
       outline: "none",
       cursor: "pointer",
