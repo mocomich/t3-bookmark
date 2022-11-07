@@ -4,6 +4,8 @@ import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import { memo } from "react";
+import { GoNote } from "react-icons/go";
+import { RiEditLine } from "react-icons/ri";
 
 import { Link } from "../util-elements/Link";
 
@@ -17,6 +19,9 @@ type Props = {
 export const Article: React.FC<Props> = memo(({ id, title, url, imageId }) => {
   return (
     <article css={styles.container}>
+      <div css={styles.edit}>
+        <RiEditLine size={22} />
+      </div>
       <div css={styles.top}>
         <TypoGraphy variant='h3'>
           <a href={url} target='_blank' rel='noopener noreferrer'>
@@ -27,7 +32,7 @@ export const Article: React.FC<Props> = memo(({ id, title, url, imageId }) => {
       <div css={styles.bottom}>
         <Link href={`mypage/${id}`}>
           <div css={styles.memo}>
-            <TypoGraphy variant='medium'>Memo...</TypoGraphy>
+            <GoNote size={22} />
           </div>
         </Link>
       </div>
@@ -52,6 +57,7 @@ export const Article: React.FC<Props> = memo(({ id, title, url, imageId }) => {
 
 const styles = {
   container: css({
+    position: "relative",
     background: COLORS.white,
     borderRadius: "6px",
     width: "100%",
@@ -94,5 +100,19 @@ const styles = {
     padding: "4px 6px",
     borderRadius: "6px",
     cursor: "pointer",
+    boxShadow: BOX_SHADOW.lg,
+  }),
+  edit: css({
+    display: "grid",
+    color: "white",
+    placeItems: "center",
+    background: COLORS.blue,
+    position: "absolute",
+    top: "-12px",
+    right: "-12px",
+    padding: "6px",
+    borderRadius: "1000px",
+    cursor: "pointer",
+    boxShadow: BOX_SHADOW.lg,
   }),
 };
