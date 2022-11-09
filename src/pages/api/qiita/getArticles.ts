@@ -1,10 +1,11 @@
+import { env } from "@/env/server.mjs";
 import axios from "axios";
 import { formatISO } from "date-fns";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const getArticles = async (req: NextApiRequest, res: NextApiResponse) => {
-  const QIITA_URL = process.env.QIITA_API_ENDPOINT;
-  const QIITA_API_KEY = process.env.QIITA_API_TOKEN;
+  const QIITA_URL = env.QIITA_API_ENDPOINT;
+  const QIITA_API_KEY = env.QIITA_API_TOKEN;
 
   const nowDate = new Date();
   const limitDate = formatISO(nowDate.setDate(nowDate.getDate() - 10), {
