@@ -15,9 +15,7 @@ export const DropdownMenu: React.FC<Props> = memo(({ triggerComponent }) => {
       <DropdownMenuPrimitive.Trigger css={styles.trigger}>
         {triggerComponent}
       </DropdownMenuPrimitive.Trigger>
-      <DropdownMenuPrimitive.Portal>
-        <DropDownMenuContent />
-      </DropdownMenuPrimitive.Portal>
+      <DropDownMenuContent />
     </DropdownMenuPrimitive.Root>
   );
 });
