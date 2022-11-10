@@ -15,8 +15,8 @@ export const TypoGraphy: React.FC<Props> = memo(({ variant, children }) => {
   const variantSetting: Map[] = [
     { key: "h1", class: css({ fontSize: "32px", fontWeight: "bold" }) },
     { key: "h2", class: css({ fontSize: "28px", fontWeight: "bold" }) },
-    { key: "h3", class: css({ fontSize: "24px", fontWeight: "bold" }) },
-    { key: "h4", class: css({ fontSize: "20px", fontWeight: "bold" }) },
+    { key: "h3", class: css({ fontSize: "20px", fontWeight: "bold" }) },
+    { key: "h4", class: css({ fontSize: "18px", fontWeight: "bold" }) },
     { key: "large", class: css({ fontSize: "20px" }) },
     { key: "medium", class: css({ fontSize: "16px" }) },
     { key: "small", class: css({ fontSize: "12px" }) },
