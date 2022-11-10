@@ -1,4 +1,3 @@
-import { Article } from "@/components/bookmark/Article";
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
