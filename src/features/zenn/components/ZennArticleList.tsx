@@ -14,7 +14,7 @@ export const ZennArticleList: React.FC = memo(() => {
         <ZennArticle
           key={article.id}
           title={article.title}
-          url={article.path}
+          path={article.path}
           emoji={article.emoji}
         />
       ))}
