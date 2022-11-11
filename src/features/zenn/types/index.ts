@@ -1,4 +1,4 @@
-export type ZennArticle = {
+export type ZennArticleType = {
   id: number;
   postType: string;
   title: string;

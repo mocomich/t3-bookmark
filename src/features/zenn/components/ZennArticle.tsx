@@ -1,21 +1,18 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
+import { ZennArticleType } from "@/features/zenn/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { memo } from "react";
 
-type Props = {
-  title: string;
-  url: string;
-  emoji: string;
-};
+type Props = Pick<ZennArticleType, "title" | "path" | "emoji">;
 
-export const ZennArticle: React.FC<Props> = memo(({ title, url, emoji }) => {
+export const ZennArticle: React.FC<Props> = memo(({ title, path, emoji }) => {
   return (
     <article css={styles.container}>
       <a
         css={styles.left}
-        href={`https://zenn.dev/${url}`}
+        href={`https://zenn.dev/${path}`}
         target='_blank'
         rel='noopener noreferrer'
       >
@@ -24,7 +21,7 @@ export const ZennArticle: React.FC<Props> = memo(({ title, url, emoji }) => {
       <div css={styles.right}>
         <TypoGraphy variant='h3'>
           <a
-            href={`https://zenn.dev/${url}`}
+            href={`https://zenn.dev/${path}`}
             target='_blank'
             rel='noopener noreferrer'
           >
