@@ -6,11 +6,13 @@ import { TabTitle } from "./TabTitle";
 
 type Props = {
   defaultKey: string;
-  tabs: {
-    title: string;
-    key: string;
-    component: React.ReactNode;
-  }[];
+  tabs: Readonly<
+    {
+      title: string;
+      key: string;
+      component: React.ReactNode;
+    }[]
+  >;
 };
 
 export const Tab: React.FC<Props> = ({ defaultKey, tabs }) => (
