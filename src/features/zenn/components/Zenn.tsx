@@ -30,7 +30,7 @@ export const Zenn: React.FC = memo(() => {
 
 const styles = {
   container: css({
-    width: "80%",
+    width: "100%",
     margin: "0 auto",
   }),
 };
