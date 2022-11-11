@@ -1,4 +1,4 @@
-export type QiitaArticle = {
+export type QiitaArticleType = {
   rendered_body: string;
   body: string;
   coediting: boolean;
