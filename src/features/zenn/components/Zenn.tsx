@@ -1,5 +1,6 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { ErrorFallback } from "@/components/util-parts/ErrorBoundary";
+import { PulseArticleList } from "@/components/util-parts/PulseArticleList";
 import { css } from "@emotion/react";
 import { Suspense, memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -18,7 +19,7 @@ export const Zenn: React.FC = memo(() => {
       </div>
       <div className='mt-8'>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Suspense fallback={<>Loading...</>}>
+          <Suspense fallback={<PulseArticleList count={6} />}>
             <ZennArticleList />
           </Suspense>
         </ErrorBoundary>
