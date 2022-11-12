@@ -20,24 +20,21 @@ export const ZennArticle: React.FC<Props> = memo(
         >
           {emoji}
         </a>
-        <div css={styles.right}>
+        <a
+          css={styles.right}
+          href={`https://zenn.dev/${path}`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <div css={styles.title}>
-            <TypoGraphy variant='h3'>
-              <a
-                href={`https://zenn.dev/${path}`}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {title}
-              </a>
-            </TypoGraphy>
+            <TypoGraphy variant='h3'>{title}</TypoGraphy>
           </div>
           <div css={styles.bottom}>
             <TypoGraphy variant='small'>
               {format(parseISO(publishedAt), "MM月dd日")}
             </TypoGraphy>
           </div>
-        </div>
+        </a>
       </article>
     );
   }

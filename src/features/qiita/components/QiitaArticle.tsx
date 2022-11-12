@@ -27,20 +27,21 @@ export const QiitaArticle: React.FC<Props> = memo(
             alt='Qiita LOGO'
           />
         </a>
-        <div css={styles.right}>
+        <a
+          href={url}
+          target='_blank'
+          rel='noopener noreferrer'
+          css={styles.right}
+        >
           <div css={styles.title}>
-            <TypoGraphy variant='h3'>
-              <a href={url} target='_blank' rel='noopener noreferrer'>
-                {title}
-              </a>
-            </TypoGraphy>
+            <TypoGraphy variant='h3'>{title}</TypoGraphy>
           </div>
           <div css={styles.bottom}>
             <TypoGraphy variant='small'>
               {format(parseISO(updated_at), "MM月dd日")}
             </TypoGraphy>
           </div>
-        </div>
+        </a>
       </article>
     );
   }
