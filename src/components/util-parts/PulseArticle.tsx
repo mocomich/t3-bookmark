@@ -20,7 +20,7 @@ const styles = {
     background: COLORS.white,
     borderRadius: "6px",
     width: "100%",
-    height: "150px",
+    height: "130px",
     boxShadow: BOX_SHADOW.md,
     display: "grid",
     gridTemplateColumns: "110px auto",
