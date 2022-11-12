@@ -10,7 +10,7 @@ export type ZennArticleType = {
   articleType: string;
   emoji: string;
   isSuspendingPrivate: boolean;
-  publishedAt: Date;
+  publishedAt: string;
   bodyUpdatedAt: string | null;
   sourceRepoUpdatedAt: string | null;
   path: string;
