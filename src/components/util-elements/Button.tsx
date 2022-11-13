@@ -6,11 +6,12 @@ type Props = {
   children: React.ReactNode;
   size: "small" | "medium" | "large";
   color?: "gray" | "blue" | "green" | "red" | "offWhite";
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
 };
 
 export const Button: React.FC<Props> = memo(
-  ({ children, size, color = "green", onClick }) => {
+  ({ children, size, color = "green", type = "submit", onClick }) => {
     const baseStyle = css({
       display: "flex",
       alignItems: "center",
@@ -36,7 +37,7 @@ export const Button: React.FC<Props> = memo(
     };
 
     return (
-      <button css={styles[size]} onClick={onClick}>
+      <button css={styles[size]} onClick={onClick} type={type}>
         {children}
       </button>
     );
