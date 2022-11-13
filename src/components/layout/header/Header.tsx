@@ -1,4 +1,5 @@
 import { Button } from "@/components/util-elements/Button";
+import { Link } from "@/components/util-elements/Link";
 import { Modal } from "@/components/util-parts/Modal";
 import { useModal } from "@/hooks/utils/useModal";
 import { vwCalcFn } from "@/styles/mixin";
@@ -24,7 +25,7 @@ export const Header: React.FC = memo(() => {
     <header css={styles.header}>
       <div css={styles.headerInner}>
         {/* TODO: ロゴ設置 */}
-        <h1>APP</h1>
+        <Link href='/'>Stock</Link>
         <nav>
           <ul css={styles.links}>
             {session?.user?.image && (
