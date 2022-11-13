@@ -17,7 +17,7 @@ export const Header: React.FC = memo(() => {
   const { open, setOpen, onClickOpen } = useModal();
 
   const onClickToCreatePage = () => {
-    router.push("/mypage/create");
+    router.push("/mypage/edit");
   };
 
   return (
