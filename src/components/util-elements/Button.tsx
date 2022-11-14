@@ -32,7 +32,7 @@ export const Button: React.FC<Props> = memo(
         padding: "6px 0px",
       }),
       large: css(baseStyle, {
-        padding: "8px 0px",
+        padding: "12px 0px",
       }),
     };
 
