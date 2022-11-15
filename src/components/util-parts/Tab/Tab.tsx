@@ -1,4 +1,5 @@
 import { COLORS } from "@/styles/config/utils";
+import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import * as Tabs from "@radix-ui/react-tabs";
 
@@ -25,8 +26,8 @@ export const Tab: React.FC<Props> = ({ defaultKey, tabs }) => (
       </div>
     </Tabs.List>
     {tabs.map((tab) => (
-      <Tabs.TabsContent css={styles.tabContent} value={tab.key} key={tab.key}>
-        {tab.component}
+      <Tabs.TabsContent value={tab.key} key={tab.key}>
+        <div css={styles.tabContent}>{tab.component}</div>
       </Tabs.TabsContent>
     ))}
   </Tabs.Root>
@@ -48,7 +49,10 @@ const styles = {
     gap: "20px",
   }),
   tabContent: css({
-    width: "80%",
     margin: "0 auto",
+    width: "80%",
+    [sp]: {
+      width: "95%",
+    },
   }),
 };
