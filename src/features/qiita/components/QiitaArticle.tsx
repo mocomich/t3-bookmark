@@ -1,6 +1,6 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
-import { vwCalcFn } from "@/styles/mixin";
+import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
@@ -34,7 +34,9 @@ export const QiitaArticle: React.FC<Props> = memo(
           css={styles.right}
         >
           <div css={styles.title}>
-            <TypoGraphy variant='h3'>{title}</TypoGraphy>
+            <TypoGraphy variant='h3' isResponsive>
+              {title}
+            </TypoGraphy>
           </div>
           <div css={styles.bottom}>
             <TypoGraphy variant='small'>
@@ -56,8 +58,11 @@ const styles = {
     boxShadow: BOX_SHADOW.md,
     display: "grid",
     gridTemplateColumns: "110px auto",
+    [sp]: {
+      gridTemplateColumns: "80px auto",
+    },
     alignItems: "center",
-    columnGap: vwCalcFn(20),
+    columnGap: "20px",
     padding: "12px 20px",
   }),
   left: {
@@ -68,7 +73,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "40px",
     cursor: "pointer",
     width: "100%",
   },

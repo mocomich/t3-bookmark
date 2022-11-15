@@ -39,6 +39,10 @@ const styles = {
     background: COLORS.white,
     height: "65px",
     lineHeight: "65px",
+    [sp]: {
+      height: "45px",
+      lineHeight: "45px",
+    },
   }),
   tabListInner: css({
     width: "90%",

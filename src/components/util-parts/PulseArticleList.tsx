@@ -1,4 +1,4 @@
-import { vwCalcFn } from "@/styles/mixin";
+import { sp, tab, vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 
 import { PulseArticle } from "./PulseArticle";
@@ -23,6 +23,12 @@ const styles = {
   container: css({
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
+    [sp]: {
+      gridTemplateColumns: "1fr",
+    },
+    [tab]: {
+      gridTemplateColumns: "1fr",
+    },
     gap: vwCalcFn(40),
   }),
 };

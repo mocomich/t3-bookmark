@@ -1,4 +1,4 @@
-import { vwCalcFn } from "@/styles/mixin";
+import { sp, tab, vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { memo } from "react";
 
@@ -27,5 +27,11 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     gap: vwCalcFn(40),
+    [sp]: {
+      gridTemplateColumns: "1fr",
+    },
+    [tab]: {
+      gridTemplateColumns: "1fr",
+    },
   }),
 };

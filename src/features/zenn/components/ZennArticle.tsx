@@ -1,7 +1,7 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { ZennArticleType } from "@/features/zenn/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
-import { vwCalcFn } from "@/styles/mixin";
+import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { format, parseISO } from "date-fns";
 import { memo } from "react";
@@ -27,7 +27,9 @@ export const ZennArticle: React.FC<Props> = memo(
           rel='noopener noreferrer'
         >
           <div css={styles.title}>
-            <TypoGraphy variant='h3'>{title}</TypoGraphy>
+            <TypoGraphy variant='h3' isResponsive>
+              {title}
+            </TypoGraphy>
           </div>
           <div css={styles.bottom}>
             <TypoGraphy variant='small'>
@@ -49,8 +51,11 @@ const styles = {
     boxShadow: BOX_SHADOW.md,
     display: "grid",
     gridTemplateColumns: "110px auto",
+    [sp]: {
+      gridTemplateColumns: "80px auto",
+    },
     alignItems: "center",
-    columnGap: vwCalcFn(20),
+    columnGap: "20px",
     padding: "12px 20px",
   }),
   left: {
@@ -62,6 +67,9 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     fontSize: "40px",
+    [sp]: {
+      fontSize: "30px",
+    },
     cursor: "pointer",
     width: "100%",
   },
