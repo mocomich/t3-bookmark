@@ -12,7 +12,9 @@ type Props = {
 export const TabTitle: React.FC<Props> = memo(({ tabKey, title }) => {
   return (
     <Tabs.Trigger css={styles.tabTrigger} value={tabKey}>
-      <TypoGraphy variant='h2'> {title}</TypoGraphy>
+      <TypoGraphy variant='h2' isResponsive>
+        {title}
+      </TypoGraphy>
     </Tabs.Trigger>
   );
 });
