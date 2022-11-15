@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import React from "react";
 
 export const Comprehension = () => {
   return (
@@ -15,6 +14,7 @@ export const Comprehension = () => {
 
 const styles = {
   container: css({
+    width: "95%",
     display: "flex",
     justifyContent: "space-between",
   }),

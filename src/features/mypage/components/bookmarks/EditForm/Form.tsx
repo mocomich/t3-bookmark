@@ -3,6 +3,7 @@ import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { createBookmarkSchema } from "@/features/mypage/schema";
 import { FormDataType } from "@/features/mypage/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { useRouter } from "next/router";
@@ -120,8 +121,14 @@ const styles = {
     borderRadius: "6px",
     background: COLORS.white,
     boxShadow: BOX_SHADOW.md,
-    display: "grid",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     gap: "28px",
+    [sp]: {
+      width: "95%",
+      padding: "20px",
+    },
   }),
   comprehension: {
     width: "40%",

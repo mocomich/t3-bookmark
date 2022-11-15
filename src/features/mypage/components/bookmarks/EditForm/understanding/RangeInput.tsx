@@ -29,7 +29,7 @@ export const RangeInput: React.FC<Props> = memo(
 
 const styles = {
   input: css({
-    width: "100%",
+    width: "95%",
     cursor: "pointer",
     appearance: "none",
     height: "4px",

@@ -15,7 +15,7 @@ export const FormContent: React.FC<Props> = memo(
     return (
       <div css={styles.container}>
         <TypoGraphy variant='large'>{title}</TypoGraphy>
-        {children}
+        <div css={styles.content}>{children}</div>
         <ErrorMessage>{errorMessage}</ErrorMessage>
       </div>
     );
@@ -24,7 +24,13 @@ export const FormContent: React.FC<Props> = memo(
 
 const styles = {
   container: css({
+    width: "100%",
+    margin: "0 auto",
     display: "grid",
     gap: "20px",
+  }),
+  content: css({
+    width: "100%",
+    margin: "0 auto",
   }),
 };
