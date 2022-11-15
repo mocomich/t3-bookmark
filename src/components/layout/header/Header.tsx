@@ -1,7 +1,7 @@
 import { Button } from "@/components/util-elements/Button";
 import { Link } from "@/components/util-elements/Link";
-import { Modal } from "@/components/util-parts/Modal";
 import { useModal } from "@/hooks/utils/useModal";
+import { COLORS } from "@/styles/config/utils";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
@@ -10,7 +10,7 @@ import { memo } from "react";
 
 import { Avatar } from "./Avatar";
 import { DropdownMenu } from "./DropDownMenu";
-import { HeaderMenu } from "./HeaderMenu";
+import { LoginModal } from "./LoginModal";
 
 export const Header: React.FC = memo(() => {
   const router = useRouter();
@@ -45,9 +45,7 @@ export const Header: React.FC = memo(() => {
           </ul>
         </nav>
       </div>
-      <Modal open={open} setOpen={setOpen}>
-        <HeaderMenu />
-      </Modal>
+      <LoginModal open={open} setOpen={setOpen} />
     </header>
   );
 });
