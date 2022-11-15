@@ -46,7 +46,7 @@ const styles = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "40vw",
+    width: "300px",
     margin: "0 auto",
     padding: "16px",
     "@media (prefers-reduced-motion: no-preference)": {
