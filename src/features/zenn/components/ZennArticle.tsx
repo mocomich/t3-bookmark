@@ -47,6 +47,7 @@ const styles = {
     background: COLORS.white,
     borderRadius: "6px",
     width: "100%",
+    minWidth: "140px",
     minHeight: "130px",
     boxShadow: BOX_SHADOW.md,
     display: "grid",
@@ -62,6 +63,7 @@ const styles = {
     background: COLORS.offWhite,
     boxShadow: BOX_SHADOW.md,
     borderRadius: "1000px",
+    width: "100%",
     aspectRatio: "1/1",
     display: "flex",
     alignItems: "center",
@@ -71,7 +73,6 @@ const styles = {
       fontSize: "30px",
     },
     cursor: "pointer",
-    width: "100%",
   },
   right: css({
     width: "100%",

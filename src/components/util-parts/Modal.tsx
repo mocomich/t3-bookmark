@@ -31,7 +31,7 @@ const styles = {
   overlay: css({
     position: "fixed",
     inset: 0,
-    background: "rgba(0,0,0,0.6)",
+    background: "rgba(36, 45, 51, 0.3)",
     "@media (prefers-reduced-motion: no-preference)": {
       animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
     },
@@ -48,7 +48,7 @@ const styles = {
     transform: "translate(-50%, -50%)",
     width: "300px",
     margin: "0 auto",
-    padding: "16px",
+    padding: "32px",
     "@media (prefers-reduced-motion: no-preference)": {
       animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
     },
