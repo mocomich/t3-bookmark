@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
-import { genres } from "../src/server/db/seed/genre";
+import { categories } from "../src/server/db/seed/category";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.genre.createMany({
-    data: genres,
+  await prisma.category.createMany({
+    data: categories,
   });
 }
 
