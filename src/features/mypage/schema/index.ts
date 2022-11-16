@@ -5,7 +5,7 @@ export const createBookmarkSchema = z.object({
   url: z.string().url({ message: ERROR_MESSAGE.url }),
   title: z.string().min(1, { message: `タイトル${ERROR_MESSAGE.required}` }),
   categories: z
-    .array(z.object({ value: z.number(), label: z.string() }))
+    .array(z.object({ value: z.string(), label: z.string() }))
     .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` }),
   comprehension: z.string(),
   isRead: z.boolean(),
@@ -16,7 +16,7 @@ export const updateBookmarkSchema = z.object({
   id: z.string().cuid(),
   url: z.string().url(),
   title: z.string(),
-  categories: z.array(z.object({ value: z.number(), label: z.string() })),
+  categories: z.array(z.object({ value: z.string(), label: z.string() })),
   isRead: z.boolean(),
   comprehension: z.string(),
   memo: z.string(),
