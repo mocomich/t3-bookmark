@@ -4,6 +4,7 @@ import { createBookmarkSchema } from "@/features/mypage/schema";
 import { FormDataType } from "@/features/mypage/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
+import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { useRouter } from "next/router";
@@ -19,7 +20,10 @@ import { Comprehension } from "./understanding/Comprehension";
 import { RangeInput } from "./understanding/RangeInput";
 
 export const Form: React.FC = memo(() => {
+  // ビジネスロジックをcustomHooksに切り出す
   // const router = useRouter();
+
+  const { data: options } = trpc.category.getAllCategories.useQuery();
 
   const defaultValues: FormDataType = {
     url: "",
@@ -38,6 +42,7 @@ export const Form: React.FC = memo(() => {
   // TODO:API
   const onSubmit = (data: FormDataType) => {
     console.log(data);
+    console.log("送信成功");
     // const submitData = {
     //   ...data,
     // };
@@ -48,6 +53,11 @@ export const Form: React.FC = memo(() => {
     // // createBookmarkMutate.mutate(submitData);
     // router.push("/mypage/bookmarks");
   };
+
+  const selectOptions = options?.map((option) => ({
+    value: option.id,
+    label: option.name,
+  }));
 
   return (
     <FormProvider {...methods}>
@@ -98,7 +108,7 @@ export const Form: React.FC = memo(() => {
           title={"Categories"}
           errorMessage={methods.formState.errors["categories"]?.message}
         >
-          <CategorySelect formName='categories' />
+          <CategorySelect formName='categories' options={selectOptions} />
         </FormContent>
         <MemoForm
           memo={methods.watch("memo")}

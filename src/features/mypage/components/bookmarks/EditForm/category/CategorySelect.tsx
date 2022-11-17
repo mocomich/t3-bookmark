@@ -9,15 +9,12 @@ import ReactSelect, {
 
 type Props = {
   formName: keyof FormDataType;
+  options?: { value: string; label: string }[];
 };
 
-//TODO:APIから取得する・propsで渡す
-const options = [
-  { value: 1, label: "フロントエンド" },
-  { value: 2, label: "バックエンド" },
-];
+export const CategorySelect: React.FC<Props> = memo(({ formName, options }) => {
+  console.log(options);
 
-export const CategorySelect: React.FC<Props> = memo(({ formName }) => {
   const customStyles = {
     option: (base: CSSObjectWithLabel) => ({
       ...base,
