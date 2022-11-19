@@ -7,7 +7,7 @@ export const createBookmarkSchema = z.object({
   categories: z
     .array(z.object({ value: z.string(), label: z.string() }))
     .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` }),
-  comprehension: z.string(),
+  comprehension: z.number(),
   isRead: z.boolean(),
   memo: z.string(),
 });
@@ -18,7 +18,7 @@ export const updateBookmarkSchema = z.object({
   title: z.string(),
   categories: z.array(z.object({ value: z.string(), label: z.string() })),
   isRead: z.boolean(),
-  comprehension: z.string(),
+  comprehension: z.number(),
   memo: z.string(),
 });
 
@@ -26,6 +26,10 @@ export const deleteBookmarkSchema = z.object({
   id: z.string().cuid(),
 });
 
-export const getSBookmarkByIdSchema = z.object({
+export const getAllBookmarksByUserId = z.object({
+  userId: z.string().cuid(),
+});
+
+export const getBookmarkByIdSchema = z.object({
   id: z.string().cuid(),
 });
