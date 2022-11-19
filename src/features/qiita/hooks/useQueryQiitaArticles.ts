@@ -16,8 +16,6 @@ export const useQueryQiitaArticles = () => {
   return useQuery<QiitaArticleType[], Error>({
     queryKey: ["qiita"],
     queryFn: getArticles,
-    refetchOnWindowFocus: true,
-    staleTime: 0,
     suspense: true,
   });
 };

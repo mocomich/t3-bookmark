@@ -16,8 +16,6 @@ export const useQueryZennArticles = () => {
   return useQuery<ZennArticleType[], Error>({
     queryKey: ["zenn"],
     queryFn: getArticles,
-    refetchOnWindowFocus: true,
-    staleTime: 0,
     suspense: true,
   });
 };
