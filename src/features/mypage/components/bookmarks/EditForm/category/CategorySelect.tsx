@@ -1,5 +1,6 @@
 import { FormDataType } from "@/features/mypage/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { trpc } from "@/utils/trpc";
 import { memo } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import ReactSelect, {
@@ -9,11 +10,15 @@ import ReactSelect, {
 
 type Props = {
   formName: keyof FormDataType;
-  options?: { value: string; label: string }[];
 };
 
-export const CategorySelect: React.FC<Props> = memo(({ formName, options }) => {
-  console.log(options);
+export const CategorySelect: React.FC<Props> = memo(({ formName }) => {
+  const { data: options } = trpc.category.getAllCategories.useQuery();
+
+  const selectOptions = options?.map((option) => ({
+    value: option.id,
+    label: option.name,
+  }));
 
   const customStyles = {
     option: (base: CSSObjectWithLabel) => ({
@@ -66,7 +71,7 @@ export const CategorySelect: React.FC<Props> = memo(({ formName, options }) => {
         <ReactSelect
           id='select'
           instanceId='select'
-          options={options}
+          options={selectOptions}
           styles={customStyles}
           placeholder='複数選択できます'
           onChange={onChange}
