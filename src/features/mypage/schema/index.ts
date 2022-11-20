@@ -26,7 +26,7 @@ export const deleteBookmarkSchema = z.object({
   id: z.string().cuid(),
 });
 
-export const getAllBookmarksByUserId = z.object({
+export const getAllBookmarksByUserIdSchema = z.object({
   userId: z.string().cuid(),
 });
 
