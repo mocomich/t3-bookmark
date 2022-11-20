@@ -11,7 +11,7 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 
 const LinkRoot = [
   {
-    href: "/mypage",
+    href: "/mypage/bookmarks/all",
     title: "My Page",
     icon: <IoBook size={18} className='mr-2 mt-1' />,
     index: 1,
