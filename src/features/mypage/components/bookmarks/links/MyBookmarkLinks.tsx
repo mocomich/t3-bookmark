@@ -30,8 +30,8 @@ const styles = {
     height: "50px",
     lineHeight: "50px",
     [sp]: {
-      height: "40px",
-      lineHeight: "49px",
+      height: "32px",
+      lineHeight: "32px",
     },
   }),
   tabListInner: css({
@@ -41,12 +41,15 @@ const styles = {
     justifyContent: "flex-start",
     alignItems: "center",
     gap: "20px",
+    [sp]: {
+      gap: "8px",
+    },
   }),
   tabContent: css({
     margin: "0 auto",
     width: "80%",
     [sp]: {
-      width: "95%",
+      width: "100%",
     },
   }),
 };

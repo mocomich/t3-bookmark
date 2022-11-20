@@ -1,6 +1,7 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { LinkPathsType } from "@/features/mypage/types";
 import { COLORS } from "@/styles/config/utils";
+import { sp } from "@/styles/mixin";
 import { isInPath } from "@/utils/functions";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
@@ -22,7 +23,7 @@ export const MyBookmarksLinkTitle: React.FC<Props> = memo(({ title, path }) => {
 
   return (
     <div css={styles.container} data-state={isSamePath ? "active" : "normal"}>
-      <TypoGraphy variant='h3'>
+      <TypoGraphy variant='h4' isResponsive>
         <button onClick={() => onClickHandler(path)}>{title}</button>
       </TypoGraphy>
     </div>
@@ -33,6 +34,9 @@ const styles = {
   container: css({
     position: "relative",
     padding: "0 12px",
+    [sp]: {
+      padding: "0 4px",
+    },
     color: COLORS.gray,
     ":hover": {
       opacity: 0.7,
@@ -41,7 +45,7 @@ const styles = {
     },
     "&[data-state=active]": {
       color: "black",
-      h3: {
+      h4: {
         "&:after": {
           position: "absolute",
           content: "''",

@@ -63,6 +63,21 @@ export const TypoGraphy: React.FC<Props> = memo(
           },
         }),
       },
+      {
+        key: "h4",
+        class: css({
+          fontSize: "20px",
+          fontWeight: "bold",
+        }),
+        responsiveClass: css({
+          fontSize: "20px",
+          fontWeight: "bold",
+          [sp]: {
+            fontSize: "14px",
+            fontWeight: "bold",
+          },
+        }),
+      },
       { key: "h4", class: css({ fontSize: "18px", fontWeight: "bold" }) },
       { key: "large", class: css({ fontSize: "20px" }) },
       { key: "medium", class: css({ fontSize: "16px" }) },
