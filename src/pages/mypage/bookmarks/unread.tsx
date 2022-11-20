@@ -1,3 +1,4 @@
+import { MyBookmarkLinks } from "@/features/mypage/components/bookmarks/links/MyBookmarkLinks";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
@@ -17,8 +18,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-const MyPage: NextPage = () => {
-  return <div>mypage</div>;
+const UnReadBookmarks: NextPage = () => {
+  return (
+    <div>
+      <MyBookmarkLinks />
+    </div>
+  );
 };
 
-export default MyPage;
+export default UnReadBookmarks;
