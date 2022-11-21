@@ -33,3 +33,8 @@ export const getAllBookmarksByUserIdSchema = z.object({
 export const getBookmarkByIdSchema = z.object({
   id: z.string().cuid(),
 });
+
+export const getBookmarksInputSchema = z.object({
+  page: z.number().nullish(),
+  limit: z.number().nullish(),
+});
