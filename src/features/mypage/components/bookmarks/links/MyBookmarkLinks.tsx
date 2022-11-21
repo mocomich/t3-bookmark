@@ -35,6 +35,7 @@ const styles = {
     },
   }),
   tabListInner: css({
+    maxWidth: "1360px",
     width: "90%",
     margin: "0 auto",
     display: "flex",
@@ -42,6 +43,7 @@ const styles = {
     alignItems: "center",
     gap: "20px",
     [sp]: {
+      width: "90%",
       gap: "8px",
     },
   }),
