@@ -9,3 +9,6 @@ export const links = [
     title: "Already Read",
   },
 ] as const;
+
+// TODO: 挙動確認の為一時的に6、後程9に変更する
+export const DEFAULT_LIMIT = 6;
