@@ -1,13 +1,48 @@
-import { createBookmarkSchema } from "@/features/mypage/schema";
+import { DEFAULT_LIMIT } from "@/features/mypage/const";
+import {
+  createBookmarkSchema,
+  getBookmarksInputSchema,
+} from "@/features/mypage/schema";
 import { CreateBookmarkType } from "@/features/mypage/types";
 
 import { authedProcedure, t } from "../trpc";
 
 export const bookmarkRouter = t.router({
-  getBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+  getAllBookmarksByUserId: authedProcedure
+    .input(getBookmarksInputSchema)
+    .query(async ({ ctx, input }) => {
+      const page = input.page ?? 1;
+      const limit = input.limit ?? DEFAULT_LIMIT;
+      const count = await ctx.prisma.bookmark.count();
+      const bookmarks = await ctx.prisma.bookmark.findMany({
+        where: {
+          userId: ctx.session?.user?.id,
+        },
+        skip: limit * (page - 1),
+        take: limit,
+        orderBy: {
+          updatedAt: "desc",
+        },
+      });
+      return { count, bookmarks };
+    }),
+
+  getReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.bookmark.findMany({
       where: {
         userId: ctx.session?.user?.id,
+        isRead: true,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+  }),
+  getUnReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.bookmark.findMany({
+      where: {
+        userId: ctx.session?.user?.id,
+        isRead: false,
       },
       orderBy: {
         updatedAt: "desc",
