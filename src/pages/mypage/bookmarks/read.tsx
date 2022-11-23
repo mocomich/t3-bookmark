@@ -1,6 +1,6 @@
 import { Space } from "@/components/util-elements/Space";
 import { MyBookmarkLinks } from "@/features/mypage/components/bookmarks/links/MyBookmarkLinks";
-import { ReadMyBookmarkList } from "@/features/mypage/components/bookmarks/read/ReadMyBookmarkList";
+import { ReadMyBookmarks } from "@/features/mypage/components/bookmarks/read/ReadMyBookmarks";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
@@ -25,7 +25,7 @@ const ReadBookmarks: NextPage = () => {
     <div>
       <MyBookmarkLinks />
       <Space axis='VERTICAL' size={80} />
-      <ReadMyBookmarkList />
+      <ReadMyBookmarks />
       <Space axis='VERTICAL' size={40} />
     </div>
   );
