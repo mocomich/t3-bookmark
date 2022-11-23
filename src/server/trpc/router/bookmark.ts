@@ -13,7 +13,6 @@ export const bookmarkRouter = t.router({
     .query(async ({ ctx, input }) => {
       const page = input.page ?? 1;
       const limit = input.limit ?? DEFAULT_LIMIT;
-      const count = await ctx.prisma.bookmark.count();
       const bookmarks = await ctx.prisma.bookmark.findMany({
         where: {
           userId: ctx.session?.user?.id,
@@ -24,8 +23,17 @@ export const bookmarkRouter = t.router({
           updatedAt: "desc",
         },
       });
-      return { count, bookmarks };
+      return bookmarks;
     }),
+
+  getCountAllBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+      },
+    });
+    return count;
+  }),
 
   getReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.bookmark.findMany({
