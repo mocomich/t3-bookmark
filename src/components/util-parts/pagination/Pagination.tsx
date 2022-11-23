@@ -1,5 +1,6 @@
 import { COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
+import { memo } from "react";
 
 type Props = {
   isDisplayButtonPrev: boolean;
@@ -12,34 +13,31 @@ type Props = {
   ) => void;
 };
 
-export const Pagination: React.FC<Props> = ({
-  isDisplayButtonPrev,
-  isDisplayButtonNext,
-  page,
-  onClick,
-}) => {
-  return (
-    <div css={styles.container}>
-      <button
-        css={{
-          visibility: isDisplayButtonPrev ? "visible" : "hidden",
-        }}
-        onClick={(e) => onClick(e, page, "PREV")}
-      >
-        {page - 1}ページ目
-      </button>
+export const Pagination: React.FC<Props> = memo(
+  ({ isDisplayButtonPrev, isDisplayButtonNext, page, onClick }) => {
+    return (
+      <div css={styles.container}>
+        <button
+          css={{
+            visibility: isDisplayButtonPrev ? "visible" : "hidden",
+          }}
+          onClick={(e) => onClick(e, page, "PREV")}
+        >
+          {page - 1}ページ目
+        </button>
 
-      <button
-        css={{
-          visibility: isDisplayButtonNext ? "visible" : "hidden",
-        }}
-        onClick={(e) => onClick(e, page, "NEXT")}
-      >
-        次へ
-      </button>
-    </div>
-  );
-};
+        <button
+          css={{
+            visibility: isDisplayButtonNext ? "visible" : "hidden",
+          }}
+          onClick={(e) => onClick(e, page, "NEXT")}
+        >
+          次へ
+        </button>
+      </div>
+    );
+  }
+);
 
 const styles = {
   container: css({
