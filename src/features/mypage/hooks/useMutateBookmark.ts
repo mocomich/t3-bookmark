@@ -5,9 +5,10 @@ export const useMutateBookmark = () => {
 
   const createBookmarkMutation = trpc.bookmark.createBookmark.useMutation({
     onSuccess: (res) => {
-      const previousMyBookmarks = utils.bookmark.getBookmarksByUserId.getData();
+      const previousMyBookmarks =
+        utils.bookmark.getAllBookmarksByUserId.getData();
       if (previousMyBookmarks) {
-        utils.bookmark.getBookmarksByUserId.setData([
+        utils.bookmark.getAllBookmarksByUserId.setData([
           res,
           ...previousMyBookmarks,
         ]);
