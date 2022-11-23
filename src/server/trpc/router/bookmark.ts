@@ -53,15 +53,15 @@ export const bookmarkRouter = t.router({
     .input(createBookmarkSchema)
     .mutation(async ({ ctx, input }) => {
       const sendData = removeCategories({ ...input });
-      const categories = input.categories.map((category) => ({
-        name: category.label,
+      const categoryIds = input.categories.map((category) => ({
+        id: category.value,
       }));
 
       const bookmark = await ctx.prisma.bookmark.create({
         data: {
           ...sendData,
           categories: {
-            create: [...categories],
+            connect: [...categoryIds],
           },
           user: {
             connect: {
