@@ -1,13 +1,13 @@
 import { Button } from "@/components/util-elements/Button";
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
+import { useMutateBookmark } from "@/features/mypage/hooks/useMutateBookmark";
 import { createBookmarkSchema } from "@/features/mypage/schema";
 import { FormDataType } from "@/features/mypage/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
-import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { memo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -21,14 +21,14 @@ import { RangeInput } from "./understanding/RangeInput";
 
 export const Form: React.FC = memo(() => {
   // ビジネスロジックをcustomHooksに切り出す
-  // const router = useRouter();
+  const router = useRouter();
 
-  const { data: options } = trpc.category.getAllCategories.useQuery();
+  const { createBookmarkMutation } = useMutateBookmark();
 
   const defaultValues: FormDataType = {
     url: "",
     title: "",
-    comprehension: "1",
+    comprehension: 0,
     categories: [],
     isRead: false,
     memo: "",
@@ -40,24 +40,19 @@ export const Form: React.FC = memo(() => {
   });
 
   // TODO:API
-  const onSubmit = (data: FormDataType) => {
-    console.log(data);
-    console.log("送信成功");
-    // const submitData = {
-    //   ...data,
-    // };
+  const onSubmit = (sendData: FormDataType) => {
     // if (!data.isRead && data.comprehension - 1 >= 1) {
     //   alert("未読の記事は理解度を0以外に設定出来ません");
     //   return;
     // }
-    // // createBookmarkMutate.mutate(submitData);
-    // router.push("/mypage/bookmarks");
-  };
+    createBookmarkMutation.mutate(sendData);
 
-  const selectOptions = options?.map((option) => ({
-    value: option.id,
-    label: option.name,
-  }));
+    // const submitData = {
+    //   ...data,
+    // };
+
+    router.push("/mypage/bookmarks/all");
+  };
 
   return (
     <FormProvider {...methods}>
@@ -79,7 +74,9 @@ export const Form: React.FC = memo(() => {
           <div css={styles.comprehension}>
             <Comprehension />
             <RangeInput
-              register={methods.register("comprehension")}
+              register={methods.register("comprehension", {
+                valueAsNumber: true,
+              })}
               min={1}
               max={5}
               step={1}
@@ -108,7 +105,7 @@ export const Form: React.FC = memo(() => {
           title={"Categories"}
           errorMessage={methods.formState.errors["categories"]?.message}
         >
-          <CategorySelect formName='categories' options={selectOptions} />
+          <CategorySelect formName='categories' />
         </FormContent>
         <MemoForm
           memo={methods.watch("memo")}

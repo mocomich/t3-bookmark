@@ -14,7 +14,7 @@ export const AllMyBookmarkList: React.FC<Props> = ({ currentPage }) => {
       page: currentPage,
       limit: DEFAULT_LIMIT,
     },
-    { suspense: true, keepPreviousData: true }
+    { suspense: true, keepPreviousData: true, staleTime: 5000 }
   );
 
   return (

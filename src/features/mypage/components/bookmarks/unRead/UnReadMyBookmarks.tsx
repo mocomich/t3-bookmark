@@ -13,7 +13,9 @@ import { UnReadMyBookmarkList } from "./UnreadMyBookmarkList";
 
 export const UnReadMyBookmarks = memo(() => {
   const { data: count } =
-    trpc.bookmark.getCountUnReadBookmarksByUserId.useQuery();
+    trpc.bookmark.getCountUnReadBookmarksByUserId.useQuery(undefined, {
+      staleTime: 5000,
+    });
 
   const { isDisplayButton, page, handlePaginationChange } = usePagination(
     PATH_LIST.unread,

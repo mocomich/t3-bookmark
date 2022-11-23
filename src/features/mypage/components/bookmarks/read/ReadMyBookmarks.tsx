@@ -12,8 +12,10 @@ import { ErrorBoundary } from "react-error-boundary";
 import { ReadMyBookmarkList } from "./ReadMyBookmarkList";
 
 export const ReadMyBookmarks = memo(() => {
-  const { data: count } =
-    trpc.bookmark.getCountReadBookmarksByUserId.useQuery();
+  const { data: count } = trpc.bookmark.getCountReadBookmarksByUserId.useQuery(
+    undefined,
+    { staleTime: 5000 }
+  );
 
   const { isDisplayButton, page, handlePaginationChange } = usePagination(
     PATH_LIST.read,
