@@ -35,28 +35,63 @@ export const bookmarkRouter = t.router({
     return count;
   }),
 
-  getReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.bookmark.findMany({
+  getReadBookmarksByUserId: authedProcedure
+    .input(getBookmarksInputSchema)
+    .query(async ({ ctx, input }) => {
+      const page = input.page ?? 1;
+      const limit = input.limit ?? DEFAULT_LIMIT;
+      const bookmarks = await ctx.prisma.bookmark.findMany({
+        where: {
+          userId: ctx.session?.user?.id,
+          isRead: true,
+        },
+        skip: limit * (page - 1),
+        take: limit,
+        orderBy: {
+          updatedAt: "desc",
+        },
+      });
+      return bookmarks;
+    }),
+
+  getCountReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.prisma.bookmark.count({
       where: {
         userId: ctx.session?.user?.id,
         isRead: true,
       },
-      orderBy: {
-        updatedAt: "desc",
-      },
     });
+    return count;
   }),
-  getUnReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.bookmark.findMany({
+
+  getUnReadBookmarksByUserId: authedProcedure
+    .input(getBookmarksInputSchema)
+    .query(async ({ ctx, input }) => {
+      const page = input.page ?? 1;
+      const limit = input.limit ?? DEFAULT_LIMIT;
+      const bookmarks = await ctx.prisma.bookmark.findMany({
+        where: {
+          userId: ctx.session?.user?.id,
+          isRead: false,
+        },
+        skip: limit * (page - 1),
+        take: limit,
+        orderBy: {
+          updatedAt: "desc",
+        },
+      });
+      return bookmarks;
+    }),
+  getCountUnReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.prisma.bookmark.count({
       where: {
         userId: ctx.session?.user?.id,
         isRead: false,
       },
-      orderBy: {
-        updatedAt: "desc",
-      },
     });
+    return count;
   }),
+
   createBookmark: authedProcedure
     .input(createBookmarkSchema)
     .mutation(async ({ ctx, input }) => {
