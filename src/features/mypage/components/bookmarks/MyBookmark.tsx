@@ -3,19 +3,19 @@ import { UtilLink } from "@/components/util-elements/UtilLink";
 import { BOX_SHADOW } from "@/styles/config/utils";
 import { getDateMMdd } from "@/utils/libs";
 import { css } from "@emotion/react";
+import { Bookmark } from "@prisma/client";
 import Image from "next/image";
 import { memo } from "react";
 
+type MyBookmarkProps = Pick<Bookmark, "id" | "url" | "title" | "updatedAt">;
+
 type Props = {
   imageId: number;
-  id: string;
-  url: string;
-  title: string;
-  updatedAt: Date;
-};
+  categories: { id: string; name: string }[];
+} & MyBookmarkProps;
 
 export const MyBookmark: React.FC<Props> = memo(
-  ({ id, imageId, url, title, updatedAt }) => {
+  ({ id, imageId, url, title, updatedAt, categories }) => {
     // TODO: 詳細ページ（メモ）のリンク設置
     return (
       <article css={styles.container}>

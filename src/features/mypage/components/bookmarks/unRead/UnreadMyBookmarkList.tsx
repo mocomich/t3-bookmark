@@ -26,6 +26,7 @@ export const UnReadMyBookmarkList: React.FC<Props> = ({ currentPage }) => {
           id={bookmark.id}
           url={bookmark.url}
           title={bookmark.title}
+          categories={bookmark.categories}
           updatedAt={bookmark.updatedAt}
         />
       ))}
