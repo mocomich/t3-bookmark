@@ -17,6 +17,9 @@ export const bookmarkRouter = t.router({
         where: {
           userId: ctx.session?.user?.id,
         },
+        include: {
+          categories: true,
+        },
         skip: limit * (page - 1),
         take: limit,
         orderBy: {
@@ -44,6 +47,9 @@ export const bookmarkRouter = t.router({
         where: {
           userId: ctx.session?.user?.id,
           isRead: true,
+        },
+        include: {
+          categories: true,
         },
         skip: limit * (page - 1),
         take: limit,
@@ -73,6 +79,9 @@ export const bookmarkRouter = t.router({
         where: {
           userId: ctx.session?.user?.id,
           isRead: false,
+        },
+        include: {
+          categories: true,
         },
         skip: limit * (page - 1),
         take: limit,
