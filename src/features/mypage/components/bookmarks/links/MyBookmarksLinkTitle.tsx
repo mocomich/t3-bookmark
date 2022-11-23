@@ -2,7 +2,7 @@ import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { LinkPathsType } from "@/features/mypage/types";
 import { COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
-import { isInPath } from "@/utils/functions";
+import { isInPath } from "@/utils/libs";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { memo } from "react";
