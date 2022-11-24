@@ -29,6 +29,15 @@ export const bookmarkRouter = t.router({
       return bookmarks;
     }),
 
+  getCountAllBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+      },
+    });
+    return count;
+  }),
+
   getReadBookmarksByUserId: authedProcedure
     .input(getBookmarksInputSchema)
     .query(async ({ ctx, input }) => {
@@ -51,6 +60,16 @@ export const bookmarkRouter = t.router({
       return bookmarks;
     }),
 
+  getCountReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+        isRead: true,
+      },
+    });
+    return count;
+  }),
+
   getUnReadBookmarksByUserId: authedProcedure
     .input(getBookmarksInputSchema)
     .query(async ({ ctx, input }) => {
@@ -72,6 +91,15 @@ export const bookmarkRouter = t.router({
       });
       return bookmarks;
     }),
+  getCountUnReadBookmarksByUserId: authedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+        isRead: false,
+      },
+    });
+    return count;
+  }),
 
   getBookmarksCounts: authedProcedure.query(async ({ ctx }) => {
     const allCounts = await ctx.prisma.bookmark.count({
