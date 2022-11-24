@@ -4,7 +4,7 @@ export const PATH_LIST = {
   read: "/mypage/bookmarks/read",
 } as const;
 
-export const links = [
+export const MY_BOOKMARK_LINK_LIST = [
   { path: PATH_LIST["all"], title: "All Bookmarks" },
   {
     path: PATH_LIST["unread"],
@@ -16,5 +16,4 @@ export const links = [
   },
 ] as const;
 
-// TODO: 挙動確認の為一時的に6、後程9に変更する
-export const DEFAULT_LIMIT = 3;
+export const DEFAULT_LIMIT = 9;

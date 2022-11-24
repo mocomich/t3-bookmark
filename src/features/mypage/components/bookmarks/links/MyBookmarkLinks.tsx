@@ -1,4 +1,4 @@
-import { links } from "@/features/mypage/const";
+import { MY_BOOKMARK_LINK_LIST } from "@/features/mypage/const";
 import { COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
@@ -10,7 +10,7 @@ export const MyBookmarkLinks: React.FC = () => {
     <div css={styles.container}>
       <div css={styles.tabList} aria-label='Find Articles'>
         <div css={styles.tabListInner}>
-          {links.map((link) => (
+          {MY_BOOKMARK_LINK_LIST.map((link) => (
             <MyBookmarksLinkTitle
               key={link.path}
               title={link.title}
