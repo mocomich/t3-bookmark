@@ -1,5 +1,5 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
-import { ZennArticleType } from "@/features/zenn/types";
+import { ZennArticleType } from "@/features/articles/zenn/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";

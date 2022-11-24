@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import { ZennArticleType } from "@/features/zenn/types";
+import { ZennArticleType } from "@/features/articles/zenn/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 

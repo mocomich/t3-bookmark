@@ -1,5 +1,5 @@
 import { env } from "@/env/client.mjs";
-import { QiitaArticleType } from "@/features/qiita/types";
+import { QiitaArticleType } from "@/features/articles/qiita/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
