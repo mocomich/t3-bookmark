@@ -1,4 +1,4 @@
-import { DEFAULT_LIMIT } from "@/features/mypage/const";
+import { DEFAULT_LIMIT, PATH_LIST } from "@/features/mypage/const";
 import {
   createBookmarkSchema,
   getBookmarksInputSchema,
@@ -99,6 +99,35 @@ export const bookmarkRouter = t.router({
       },
     });
     return count;
+  }),
+
+  getBookmarksCounts: authedProcedure.query(async ({ ctx }) => {
+    const allCounts = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+      },
+    });
+
+    const unReadCounts = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+        isRead: false,
+      },
+    });
+    const readCounts = await ctx.prisma.bookmark.count({
+      where: {
+        userId: ctx.session?.user?.id,
+        isRead: true,
+      },
+    });
+
+    const counts = {
+      [PATH_LIST["all"]]: allCounts,
+      [PATH_LIST["unread"]]: unReadCounts,
+      [PATH_LIST["read"]]: readCounts,
+    };
+
+    return counts;
   }),
 
   createBookmark: authedProcedure
