@@ -121,6 +121,9 @@ export const bookmarkRouter = t.router({
             },
           },
         },
+        include: {
+          categories: true,
+        },
       });
       return bookmark;
     }),
