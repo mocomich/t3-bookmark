@@ -1,7 +1,7 @@
 import { Space } from "@/components/util-elements/Space";
 import { ErrorFallback } from "@/components/util-parts/ErrorBoundary";
-import { PulseArticleList } from "@/components/util-parts/PulseArticleList";
 import { Pagination } from "@/components/util-parts/pagination/Pagination";
+import { PulseArticleList } from "@/components/util-parts/pulse/PulseArticleList";
 import { PATH_LIST } from "@/features/mypage/const";
 import { usePagination } from "@/features/mypage/hooks/usePagination";
 import { trpc } from "@/utils/trpc";
@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 import { Suspense, memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-import { UnReadMyBookmarkList } from "./UnreadMyBookmarkList";
+import { UnReadMyBookmarkList } from "./UnReadMyBookmarkList";
 
 export const UnReadMyBookmarks = memo(() => {
   const { data: count } =

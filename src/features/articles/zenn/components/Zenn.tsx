@@ -1,7 +1,7 @@
 import { ErrorFallback } from "@/components/util-parts/ErrorBoundary";
-import { PulseArticleList } from "@/components/util-parts/PulseArticleList";
+import { PulseArticleList } from "@/components/util-parts/pulse/PulseArticleList";
 import { ArticlesTitle } from "@/features/articles/ArticlesTitle";
-import { sp, vwCalcFn } from "@/styles/mixin";
+import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { Suspense, memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
