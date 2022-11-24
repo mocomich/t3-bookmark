@@ -1,11 +1,19 @@
 import { MY_BOOKMARK_LINK_LIST } from "@/features/mypage/const";
 import { COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
+import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
 
 import { MyBookmarksLinkTitle } from "./MyBookmarksLinkTitle";
 
 export const MyBookmarkLinks: React.FC = () => {
+  const { data: counts } = trpc.bookmark.getBookmarksCounts.useQuery(
+    undefined,
+    {
+      staleTime: 5000,
+    }
+  );
+
   return (
     <div css={styles.container}>
       <div css={styles.tabList} aria-label='Find Articles'>
@@ -15,6 +23,7 @@ export const MyBookmarkLinks: React.FC = () => {
               key={link.path}
               title={link.title}
               path={link.path}
+              counts={counts ? counts[link.path] : 0}
             />
           ))}
         </div>

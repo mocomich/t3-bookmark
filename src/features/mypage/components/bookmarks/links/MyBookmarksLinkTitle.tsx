@@ -1,7 +1,7 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { LinkPathsType } from "@/features/mypage/types";
 import { COLORS } from "@/styles/config/utils";
-import { sp } from "@/styles/mixin";
+import { sp, vwCalcFn } from "@/styles/mixin";
 import { isInPath } from "@/utils/libs";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
@@ -10,25 +10,32 @@ import { memo } from "react";
 type Props = {
   title: string;
   path: LinkPathsType;
+  counts: number;
 };
 
-export const MyBookmarksLinkTitle: React.FC<Props> = memo(({ title, path }) => {
-  const router = useRouter();
-  const currentPath = router.pathname;
-  const isSamePath = isInPath<LinkPathsType>(path, currentPath);
+export const MyBookmarksLinkTitle: React.FC<Props> = memo(
+  ({ title, path, counts }) => {
+    const router = useRouter();
+    const currentPath = router.pathname;
+    const isSamePath = isInPath<LinkPathsType>(path, currentPath);
+    const unReadStyle = title === "UnRead" ? { color: COLORS.red } : {};
 
-  const onClickHandler = (path: LinkPathsType) => {
-    router.push(path);
-  };
+    const onClickHandler = (path: LinkPathsType) => {
+      router.push(path);
+    };
 
-  return (
-    <div css={styles.container} data-state={isSamePath ? "active" : "normal"}>
-      <TypoGraphy variant='h4' isResponsive>
-        <button onClick={() => onClickHandler(path)}>{title}</button>
-      </TypoGraphy>
-    </div>
-  );
-});
+    return (
+      <div css={styles.container} data-state={isSamePath ? "active" : "normal"}>
+        <TypoGraphy variant='h4' isResponsive>
+          <button css={styles.button} onClick={() => onClickHandler(path)}>
+            {title}
+            <span css={unReadStyle}>{counts}</span>
+          </button>
+        </TypoGraphy>
+      </div>
+    );
+  }
+);
 
 const styles = {
   container: css({
@@ -58,5 +65,9 @@ const styles = {
         },
       },
     },
+  }),
+  button: css({
+    display: "flex",
+    gap: vwCalcFn(8),
   }),
 };
