@@ -1,4 +1,4 @@
-import { Tab } from "@/components/util-parts/Tab/Tab";
+import { Tab } from "@/components/util-parts/tab/Tab";
 import React from "react";
 
 import { Qiita } from "../qiita/components/Qiita";
