@@ -18,7 +18,8 @@ export const usePagination = (path: LinkPathsType, count?: number) => {
     _updatePage(value);
 
     const currentPage = value === "PREV" ? page - 1 : page + 1;
-    _transitionPage(path, currentPage, router);
+    _transitionPath(path, currentPage, router);
+    window.scrollTo(0, 0);
   };
 
   function _updatePage(value: "PREV" | "NEXT") {
@@ -30,7 +31,7 @@ export const usePagination = (path: LinkPathsType, count?: number) => {
     });
   }
 
-  function _transitionPage(
+  function _transitionPath(
     path: LinkPathsType,
     currentPage: number,
     router: NextRouter
