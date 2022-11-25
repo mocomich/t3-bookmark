@@ -7,6 +7,7 @@ import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Bookmark, Category } from "@prisma/client";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -19,19 +20,26 @@ import { MemoForm } from "./memo/MemoForm";
 import { Comprehension } from "./understanding/Comprehension";
 import { RangeInput } from "./understanding/RangeInput";
 
-export const Form: React.FC = memo(() => {
+type Props = {
+  bookmark?: Bookmark & { categories: Category[] };
+};
+
+export const Form: React.FC<Props> = memo(({ bookmark }) => {
+  const { url, title, comprehension, categories, isRead, memo } = {
+    ...bookmark,
+  };
   // ビジネスロジックをcustomHooksに切り出す
   const router = useRouter();
 
   const { createBookmarkMutation } = useMutateBookmark();
 
   const defaultValues: FormDataType = {
-    url: "",
-    title: "",
-    comprehension: 0,
-    categories: [],
-    isRead: false,
-    memo: "",
+    url: url ? url : "",
+    title: title ? title : "",
+    comprehension: comprehension ? comprehension : 0,
+    categories: categories ? _convertCategories(categories) : [],
+    isRead: isRead ? true : false,
+    memo: memo ? memo : "",
   };
 
   const methods = useForm<FormDataType>({
@@ -53,6 +61,16 @@ export const Form: React.FC = memo(() => {
 
     router.push("/mypage/bookmarks/all");
   };
+
+  function _convertCategories(categories: Category[]) {
+    if (!categories) {
+      return [];
+    }
+    return categories.map((category) => ({
+      label: category.name,
+      value: category.id,
+    }));
+  }
 
   return (
     <FormProvider {...methods}>
