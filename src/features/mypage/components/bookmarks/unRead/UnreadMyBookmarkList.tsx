@@ -3,7 +3,7 @@ import { sp, tab, vwCalcFn } from "@/styles/mixin";
 import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
 
-import { MyBookmark } from "../MyBookmark";
+import { MyBookmark } from "../bookmark/MyBookmark";
 
 type Props = {
   currentPage: number;
