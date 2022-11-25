@@ -1,3 +1,4 @@
+import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
@@ -11,6 +12,7 @@ type Props = {
 export const Memo: React.FC<Props> = memo(({ memo }) => {
   return (
     <div css={styles.container}>
+      <TypoGraphy variant='large'>Memo</TypoGraphy>
       <Markdown markdown={memo} />
     </div>
   );
