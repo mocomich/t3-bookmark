@@ -30,7 +30,7 @@ export const getAllBookmarksByUserIdSchema = z.object({
   userId: z.string().cuid(),
 });
 
-export const getBookmarkByIdSchema = z.object({
+export const getSingleBookmarkByIdSchema = z.object({
   id: z.string().cuid(),
 });
 
