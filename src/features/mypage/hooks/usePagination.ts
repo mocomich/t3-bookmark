@@ -1,5 +1,5 @@
 import { NextRouter, useRouter } from "next/router";
-import React, { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { DEFAULT_LIMIT } from "../const";
 import { LinkPathsType } from "../types";
@@ -7,8 +7,20 @@ import { LinkPathsType } from "../types";
 export const usePagination = (path: LinkPathsType, count?: number) => {
   const router = useRouter();
 
-  const initialPage = router.query.page ? Number(router.query.page) : 1;
+  const _getPage = useCallback(
+    (page?: string) => {
+      return page ? Number(router.query.page) : 1;
+    },
+    [router.query.page]
+  );
+
+  const initialPage = _getPage(_getQueryPage(router.query.page));
   const [page, setPage] = useState(initialPage);
+
+  useEffect(() => {
+    const page = _getPage(_getQueryPage(router.query.page));
+    setPage(page);
+  }, [router.query, _getPage]);
 
   const handlePaginationChange = (
     e: React.FormEvent<HTMLButtonElement>,
@@ -21,6 +33,13 @@ export const usePagination = (path: LinkPathsType, count?: number) => {
     _transitionPath(path, currentPage, router);
     window.scrollTo(0, 0);
   };
+
+  function _getQueryPage(page?: string | string[]) {
+    if (page === undefined) return;
+    if (typeof page !== "string") return;
+
+    return page;
+  }
 
   function _updatePage(value: "PREV" | "NEXT") {
     setPage((prev) => {
