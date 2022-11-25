@@ -3,13 +3,13 @@ import { sp, tab, vwCalcFn } from "@/styles/mixin";
 import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
 
-import { MyBookmark } from "../bookmark/MyBookmark";
+import { MyBookmark } from "../MyBookmark";
 
 type Props = {
   currentPage: number;
 };
 export const UnReadMyBookmarkList: React.FC<Props> = ({ currentPage }) => {
-  const { data: bookmarks } = trpc.bookmark.getUnReadBookmarksByUserId.useQuery(
+  const { data: bookmarks } = trpc.bookmark.getReadBookmarksByUserId.useQuery(
     {
       page: currentPage,
       limit: DEFAULT_LIMIT,
