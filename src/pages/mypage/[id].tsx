@@ -1,3 +1,5 @@
+import { Detail } from "@/features/mypage/components/bookmarks/deitail/Detail";
+import { Form } from "@/features/mypage/components/bookmarks/editForm/Form";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -20,8 +22,23 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 const ArticleMemoPage: NextPage = () => {
   const query = useRouter().query;
+  const userId = _getUserId(query.id);
 
-  return <div>{query.id}</div>;
+  function _getUserId(id: string | string[] | undefined) {
+    if (id === undefined) {
+      throw new Error("データが取得できません");
+    }
+    if (typeof id !== "string") {
+      throw new Error("正しいidを送信して下さい");
+    }
+    return id;
+  }
+
+  return (
+    <section>
+      <Detail id={userId} />
+    </section>
+  );
 };
 
 export default ArticleMemoPage;
