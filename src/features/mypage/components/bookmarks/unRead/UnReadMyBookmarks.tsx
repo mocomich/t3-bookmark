@@ -1,7 +1,7 @@
 import { Space } from "@/components/util-elements/Space";
 import { ErrorFallback } from "@/components/util-parts/ErrorBoundary";
 import { Pagination } from "@/components/util-parts/pagination/Pagination";
-import { PulseArticleList } from "@/components/util-parts/pulse/PulseArticleList";
+import { PulseBookmarkList } from "@/components/util-parts/pulse/PulseBookmarkList";
 import { PATH_LIST } from "@/features/mypage/const";
 import { usePagination } from "@/features/mypage/hooks/usePagination";
 import { trpc } from "@/utils/trpc";
@@ -24,7 +24,7 @@ export const UnReadMyBookmarks = memo(() => {
   return (
     <section css={styles.container}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Suspense fallback={<PulseArticleList count={6} />}>
+        <Suspense fallback={<PulseBookmarkList count={6} />}>
           <UnReadMyBookmarkList currentPage={page} />
         </Suspense>
       </ErrorBoundary>
