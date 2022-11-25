@@ -1,11 +1,15 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { UtilLink } from "@/components/util-elements/UtilLink";
 import { BOX_SHADOW } from "@/styles/config/utils";
-import { getDateMMdd } from "@/utils/libs";
 import { css } from "@emotion/react";
 import { Bookmark } from "@prisma/client";
-import Image from "next/image";
 import { memo } from "react";
+
+import { Categories } from "./Categories";
+import { Date } from "./Date";
+import { HeadImage } from "./HeadImage";
+import { MemoIcon } from "./MemoIcon";
+import { Tag } from "./Tag";
 
 type MyBookmarkProps = Pick<Bookmark, "id" | "url" | "title" | "updatedAt">;
 
@@ -20,14 +24,11 @@ export const MyBookmark: React.FC<Props> = memo(
     return (
       <article css={styles.container}>
         <UtilLink style={styles.head} href={url}>
-          <div css={styles.headImage}>
-            <Image
-              src={`/assets/dogs/dog${imageId}.png`}
-              layout='fill'
-              objectFit='contain'
-              alt='犬のアイコン画像'
-            />
+          <div css={styles.top}>
+            <Tag tag='TAG' />
+            <MemoIcon id={id} />
           </div>
+          <HeadImage imageId={imageId} />
         </UtilLink>
         <UtilLink style={styles.content} href={url}>
           <TypoGraphy variant='h4' isResponsive>
@@ -35,7 +36,8 @@ export const MyBookmark: React.FC<Props> = memo(
           </TypoGraphy>
         </UtilLink>
         <div css={styles.bottom}>
-          <TypoGraphy variant='small'>{getDateMMdd(updatedAt)}</TypoGraphy>
+          <Categories categories={categories} />
+          <Date updatedAt={updatedAt} />
         </div>
       </article>
     );
@@ -56,20 +58,20 @@ const styles = {
     background: "#71abb3",
     position: "relative",
     borderRadius: "6px 6px 0 0",
+    padding: "12px",
   }),
-  headImage: css({
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "50px",
-    height: "50px",
+  top: css({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   }),
   content: css({
     padding: "12px",
   }),
   bottom: css({
+    display: "grid",
+    gridTemplateColumns: "auto 56px",
+    justifyContent: "space-between",
     padding: "12px",
-    justifySelf: "flex-end",
   }),
 };
