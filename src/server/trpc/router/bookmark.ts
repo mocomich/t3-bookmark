@@ -2,12 +2,26 @@ import { DEFAULT_LIMIT, PATH_LIST } from "@/features/mypage/const";
 import {
   createBookmarkSchema,
   getBookmarksInputSchema,
+  getSingleBookmarkByIdSchema,
 } from "@/features/mypage/schema";
 import { CreateBookmarkType } from "@/features/mypage/types";
 
 import { authedProcedure, t } from "../trpc";
 
 export const bookmarkRouter = t.router({
+  getSingleBookmarkById: authedProcedure
+    .input(getSingleBookmarkByIdSchema)
+    .query(async ({ ctx, input }) => {
+      const bookmark = await ctx.prisma.bookmark.findUnique({
+        where: {
+          id: input.id,
+        },
+        include: {
+          categories: true,
+        },
+      });
+      return bookmark;
+    }),
   getAllBookmarksByUserId: authedProcedure
     .input(getBookmarksInputSchema)
     .query(async ({ ctx, input }) => {
