@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { MY_BOOKMARK_LINK_LIST } from "../const";
+import { MY_BOOKMARK_LINK_LIST, SETTING_LINK_LIST } from "../const";
 import {
   createBookmarkSchema,
   deleteBookmarkSchema,
@@ -17,3 +17,6 @@ export type GetSBookmarkByIdType = z.infer<typeof getSingleBookmarkByIdSchema>;
 
 export type LinkPathsType = typeof MY_BOOKMARK_LINK_LIST[number]["path"];
 export type LinkTitlesType = typeof MY_BOOKMARK_LINK_LIST[number]["title"];
+
+export type SettingLinkPathsType = typeof SETTING_LINK_LIST[number]["path"];
+export type SettingLinkTitlesType = typeof SETTING_LINK_LIST[number]["title"];
