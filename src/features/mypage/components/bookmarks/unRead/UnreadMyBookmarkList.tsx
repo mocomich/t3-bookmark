@@ -9,7 +9,7 @@ type Props = {
   currentPage: number;
 };
 export const UnReadMyBookmarkList: React.FC<Props> = ({ currentPage }) => {
-  const { data: bookmarks } = trpc.bookmark.getReadBookmarksByUserId.useQuery(
+  const { data: bookmarks } = trpc.bookmark.getUnReadBookmarksByUserId.useQuery(
     {
       page: currentPage,
       limit: DEFAULT_LIMIT,
