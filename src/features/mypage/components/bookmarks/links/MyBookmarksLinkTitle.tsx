@@ -1,22 +1,24 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { useLinks } from "@/features/mypage/hooks/useLinks";
-import { LinkPathsType } from "@/features/mypage/types";
+import {
+  BookmarkLinkPathsType,
+  BookmarkTitlesType,
+} from "@/features/mypage/types";
 import { COLORS } from "@/styles/config/utils";
 import { sp, vwCalcFn } from "@/styles/mixin";
-import { isInPath } from "@/utils/libs";
 import { css } from "@emotion/react";
-import { useRouter } from "next/router";
 import { memo } from "react";
 
 type Props = {
-  title: string;
-  path: LinkPathsType;
+  title: BookmarkTitlesType;
+  path: BookmarkLinkPathsType;
   counts: number;
 };
 
 export const MyBookmarksLinkTitle: React.FC<Props> = memo(
   ({ title, path, counts }) => {
-    const { isSamePath, onClickTransitionPage } = useLinks<LinkPathsType>(path);
+    const { isSamePath, onClickTransitionPage } =
+      useLinks<BookmarkLinkPathsType>(path);
     const unReadStyle = title === "UnRead" ? { color: COLORS.red } : {};
 
     return (

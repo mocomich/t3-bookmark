@@ -2,9 +2,9 @@ import { NextRouter, useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
 import { DEFAULT_LIMIT } from "../const";
-import { LinkPathsType } from "../types";
+import { BookmarkLinkPathsType } from "../types";
 
-export const usePagination = (path: LinkPathsType, count?: number) => {
+export const usePagination = (path: BookmarkLinkPathsType, count?: number) => {
   const router = useRouter();
 
   const _getPage = useCallback(
@@ -51,7 +51,7 @@ export const usePagination = (path: LinkPathsType, count?: number) => {
   }
 
   function _transitionPath(
-    path: LinkPathsType,
+    path: BookmarkLinkPathsType,
     currentPage: number,
     router: NextRouter
   ) {
