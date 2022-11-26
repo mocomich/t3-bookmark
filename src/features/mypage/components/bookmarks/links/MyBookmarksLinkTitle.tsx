@@ -1,4 +1,5 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
+import { useLinks } from "@/features/mypage/hooks/useLinks";
 import { LinkPathsType } from "@/features/mypage/types";
 import { COLORS } from "@/styles/config/utils";
 import { sp, vwCalcFn } from "@/styles/mixin";
@@ -15,19 +16,16 @@ type Props = {
 
 export const MyBookmarksLinkTitle: React.FC<Props> = memo(
   ({ title, path, counts }) => {
-    const router = useRouter();
-    const currentPath = router.pathname;
-    const isSamePath = isInPath<LinkPathsType>(path, currentPath);
+    const { isSamePath, onClickTransitionPage } = useLinks<LinkPathsType>(path);
     const unReadStyle = title === "UnRead" ? { color: COLORS.red } : {};
-
-    const onClickHandler = (path: LinkPathsType) => {
-      router.push(path);
-    };
 
     return (
       <div css={styles.container} data-state={isSamePath ? "active" : "normal"}>
         <TypoGraphy variant='h4' isResponsive>
-          <button css={styles.button} onClick={() => onClickHandler(path)}>
+          <button
+            css={styles.button}
+            onClick={() => onClickTransitionPage(path)}
+          >
             {title}
             <span css={unReadStyle}>{counts}</span>
           </button>
