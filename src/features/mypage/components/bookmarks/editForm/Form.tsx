@@ -31,7 +31,8 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
   // ビジネスロジックをcustomHooksに切り出す
   const router = useRouter();
 
-  const { createBookmarkMutation } = useMutateBookmark();
+  const { createBookmarkMutation, updateBookmarkMutation } =
+    useMutateBookmark();
 
   const defaultValues: FormDataType = {
     url: url ? url : "",
@@ -47,20 +48,29 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
     resolver: zodResolver(createBookmarkSchema),
   });
 
-  // TODO:API
-  const onSubmit = (sendData: FormDataType) => {
-    // if (!data.isRead && data.comprehension - 1 >= 1) {
-    //   alert("未読の記事は理解度を0以外に設定出来ません");
-    //   return;
-    // }
-    createBookmarkMutation.mutate(sendData);
+  const onSubmit = (formData: FormDataType) => {
+    const id = bookmark ? bookmark.id : null;
+    const { isRead, comprehension } = formData;
+    if (!_validateComprehension(isRead, comprehension)) {
+      return;
+    }
 
-    // const submitData = {
-    //   ...data,
-    // };
+    if (id) {
+      updateBookmarkMutation.mutate({ id, ...formData });
+    } else {
+      createBookmarkMutation.mutate(formData);
+    }
 
     router.push("/mypage/bookmarks/all");
   };
+
+  function _validateComprehension(isRead: boolean, comprehension: number) {
+    if (comprehension !== 1 && !isRead) {
+      alert("未読の記事は理解度を0%以外に設定出来ません");
+      return false;
+    }
+    return true;
+  }
 
   function _convertCategories(categories: Category[]) {
     if (!categories) {
@@ -130,7 +140,9 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
           register={methods.register("memo")}
         />
         <Button size='large'>
-          <TypoGraphy variant='large'>登録する</TypoGraphy>
+          <TypoGraphy variant='large'>
+            {bookmark ? "Update" : "Register"}
+          </TypoGraphy>
         </Button>
       </form>
     </FormProvider>
