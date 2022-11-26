@@ -3,6 +3,7 @@ import {
   createBookmarkSchema,
   getBookmarksInputSchema,
   getSingleBookmarkByIdSchema,
+  updateBookmarkSchema,
 } from "@/features/mypage/schema";
 import { CreateBookmarkType } from "@/features/mypage/types";
 
@@ -163,6 +164,37 @@ export const bookmarkRouter = t.router({
               id: ctx.session?.user?.id,
             },
           },
+        },
+        include: {
+          categories: true,
+        },
+      });
+      return bookmark;
+    }),
+
+  updateBookmark: authedProcedure
+    .input(updateBookmarkSchema)
+    .mutation(async ({ ctx, input }) => {
+      const bookmarkId = input.id;
+      const sendData = removeCategories({ ...input });
+      const categoryIds = input.categories.map((category) => ({
+        id: category.value,
+      }));
+
+      const bookmark = await ctx.prisma.bookmark.update({
+        data: {
+          ...sendData,
+          categories: {
+            connect: [...categoryIds],
+          },
+          user: {
+            connect: {
+              id: ctx.session?.user?.id,
+            },
+          },
+        },
+        where: {
+          id: bookmarkId,
         },
         include: {
           categories: true,
