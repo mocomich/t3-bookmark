@@ -1,3 +1,5 @@
+import { Space } from "@/components/util-elements/Space";
+import { SettingLinks } from "@/features/mypage/components/settings/links/SettingLinks";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
@@ -18,7 +20,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 const SettingsPage: NextPage = () => {
-  return <div>Settings</div>;
+  return (
+    <div>
+      <SettingLinks />
+      <Space axis='VERTICAL' size={80} />
+      <Space axis='VERTICAL' size={40} />
+    </div>
+  );
 };
 
 export default SettingsPage;
