@@ -4,3 +4,5 @@ export const maxSize = 1920;
 
 export const HEADER_HEIGHT = 80;
 export const FOOTER_HEIGHT = 120;
+
+export const LAYOUT_WIDTH = 1200;
