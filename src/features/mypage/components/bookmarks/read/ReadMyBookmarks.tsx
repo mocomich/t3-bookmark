@@ -40,7 +40,7 @@ export const ReadMyBookmarks = memo(() => {
 const styles = {
   container: css({
     maxWidth: "1120px",
-    width: "80%",
+    width: "90%",
     margin: "0 auto",
   }),
 };
