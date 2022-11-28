@@ -1,8 +1,6 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { UtilLink } from "@/components/util-elements/UtilLink";
-import { useFadeAnimation } from "@/hooks/utils/useFadeAnimation";
 import { BOX_SHADOW } from "@/styles/config/utils";
-import { fadeIn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { Bookmark } from "@prisma/client";
 import { memo } from "react";
@@ -22,11 +20,10 @@ type Props = {
 
 export const MyBookmark: React.FC<Props> = memo(
   ({ id, imageId, url, title, updatedAt, categories }) => {
-    const { isShow } = useFadeAnimation();
     return (
       <article css={styles.container}>
         <UtilLink style={styles.head} href={url}>
-          <div css={[styles.top, isShow && { opacity: 1 }]}>
+          <div css={styles.top}>
             <Tag tag='TAG' />
             <MemoIcon id={id} />
           </div>
@@ -55,8 +52,6 @@ const styles = {
     gridTemplateRows: "140px 2fr 1fr",
     minHeight: "280px",
     borderRadius: "12px",
-    opacity: 0,
-    animation: `${fadeIn} 300ms linear both`,
   }),
   head: css({
     background: "#71abb3",
