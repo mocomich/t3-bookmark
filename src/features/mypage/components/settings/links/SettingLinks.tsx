@@ -1,4 +1,5 @@
 import { SETTING_LINK_LIST } from "@/features/mypage/const";
+import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
@@ -36,15 +37,14 @@ const styles = {
     },
   }),
   tabListInner: css({
-    maxWidth: "1360px",
-    width: "90%",
+    maxWidth: LAYOUT_WIDTH,
+    width: "95%",
     margin: "0 auto",
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
     gap: "20px",
     [sp]: {
-      width: "90%",
       gap: "8px",
     },
   }),

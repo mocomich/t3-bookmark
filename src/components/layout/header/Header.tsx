@@ -1,7 +1,7 @@
 import { Button } from "@/components/util-elements/Button";
 import { Link } from "@/components/util-elements/Link";
 import { useModal } from "@/hooks/utils/useModal";
-import { COLORS } from "@/styles/config/utils";
+import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
@@ -57,10 +57,13 @@ const styles = {
     display: "grid",
   }),
   headerInner: css({
+    maxWidth: LAYOUT_WIDTH,
+    width: "100%",
+    margin: "0 auto",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: `0 ${vwCalcFn(40)}`,
+    padding: `0 20px`,
   }),
   links: css({
     display: "flex",

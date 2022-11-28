@@ -42,10 +42,11 @@ export const Pagination: React.FC<Props> = memo(
 const styles = {
   container: css({
     display: "grid",
-    gridTemplateColumns: "repeat(2, 200px)",
+    gridTemplateColumns: "repeat(2,1fr)",
     gap: "40px",
     justifyContent: "center",
     button: {
+      maxWidth: "200px",
       background: COLORS.green,
       padding: "6px 0",
       color: "white",

@@ -41,6 +41,7 @@ const styles = {
     gridTemplateColumns: "repeat(3, 1fr)",
     [sp]: {
       gridTemplateColumns: "1fr",
+      gap: "20px",
     },
     [tab]: {
       gridTemplateColumns: "repeat(2, 1fr)",

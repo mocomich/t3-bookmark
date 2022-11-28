@@ -1,3 +1,4 @@
+import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
@@ -39,13 +40,10 @@ const styles = {
     background: COLORS.white,
     height: "65px",
     lineHeight: "65px",
-    [sp]: {
-      height: "45px",
-      lineHeight: "45px",
-    },
   }),
   tabListInner: css({
-    width: "90%",
+    maxWidth: LAYOUT_WIDTH,
+    width: "95%",
     margin: "0 auto",
     display: "flex",
     justifyContent: "flex-start",
@@ -53,10 +51,8 @@ const styles = {
     gap: "20px",
   }),
   tabContent: css({
+    maxWidth: LAYOUT_WIDTH,
+    width: "95%",
     margin: "0 auto",
-    width: "80%",
-    [sp]: {
-      width: "95%",
-    },
   }),
 };
