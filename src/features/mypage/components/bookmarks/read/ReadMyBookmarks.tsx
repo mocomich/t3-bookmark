@@ -1,11 +1,12 @@
 import { Space } from "@/components/util-elements/Space";
 import { ErrorFallback } from "@/components/util-parts/ErrorBoundary";
 import { Pagination } from "@/components/util-parts/pagination/Pagination";
+import { PulseBookmarkList } from "@/components/util-parts/pulse/PulseBookmarkList";
 import { PATH_LIST } from "@/features/mypage/const";
 import { usePagination } from "@/features/mypage/hooks/usePagination";
 import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
-import { memo } from "react";
+import { Suspense, memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { ReadMyBookmarkList } from "./ReadMyBookmarkList";
@@ -21,7 +22,9 @@ export const ReadMyBookmarks = memo(() => {
   return (
     <section css={styles.container}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <ReadMyBookmarkList currentPage={page} />
+        <Suspense fallback={<PulseBookmarkList count={6} />}>
+          <ReadMyBookmarkList currentPage={page} />
+        </Suspense>
       </ErrorBoundary>
       <Space axis='VERTICAL' size={40} />
       <Pagination
