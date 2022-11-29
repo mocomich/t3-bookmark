@@ -50,7 +50,7 @@ const styles = {
   }),
   tabContent: css({
     margin: "0 auto",
-    width: "80%",
+    width: "90%",
     [sp]: {
       width: "100%",
     },
