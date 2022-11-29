@@ -44,9 +44,10 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(2,1fr)",
     gap: "40px",
-    justifyContent: "center",
+    justifyItems: "center",
     button: {
       maxWidth: "200px",
+      width: "100%",
       background: COLORS.green,
       padding: "6px 0",
       color: "white",
