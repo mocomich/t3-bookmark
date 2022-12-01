@@ -181,6 +181,17 @@ export const bookmarkRouter = t.router({
         id: category.value,
       }));
 
+      await ctx.prisma.bookmark.update({
+        data: {
+          categories: {
+            set: [],
+          },
+        },
+        where: {
+          id: bookmarkId,
+        },
+      });
+
       const bookmark = await ctx.prisma.bookmark.update({
         data: {
           ...sendData,
