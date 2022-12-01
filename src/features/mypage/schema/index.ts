@@ -16,7 +16,9 @@ export const updateBookmarkSchema = z.object({
   id: z.string().cuid(),
   url: z.string().url(),
   title: z.string(),
-  categories: z.array(z.object({ value: z.string(), label: z.string() })),
+  categories: z
+    .array(z.object({ value: z.string(), label: z.string() }))
+    .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` }),
   isRead: z.boolean(),
   comprehension: z.number(),
   memo: z.string(),
