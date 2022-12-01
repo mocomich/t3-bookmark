@@ -3,10 +3,14 @@ import { z } from "zod";
 
 export const createBookmarkSchema = z.object({
   url: z.string().url({ message: ERROR_MESSAGE.url }),
-  title: z.string().min(1, { message: `タイトル${ERROR_MESSAGE.required}` }),
+  title: z
+    .string()
+    .min(1, { message: `タイトル${ERROR_MESSAGE.required}` })
+    .max(50, { message: `タイトルは50文字${ERROR_MESSAGE.max}` }),
   categories: z
     .array(z.object({ value: z.string(), label: z.string() }))
-    .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` }),
+    .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` })
+    .max(3, { message: `カテゴリーは最大3つ${ERROR_MESSAGE.max}` }),
   comprehension: z.number(),
   isRead: z.boolean(),
   memo: z.string(),
@@ -15,10 +19,14 @@ export const createBookmarkSchema = z.object({
 export const updateBookmarkSchema = z.object({
   id: z.string().cuid(),
   url: z.string().url(),
-  title: z.string(),
+  title: z
+    .string()
+    .min(1, { message: `タイトル${ERROR_MESSAGE.required}` })
+    .max(50, { message: `タイトルは50文字${ERROR_MESSAGE.max}` }),
   categories: z
     .array(z.object({ value: z.string(), label: z.string() }))
-    .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` }),
+    .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` })
+    .max(3, { message: `カテゴリーは最大3つ${ERROR_MESSAGE.max}` }),
   isRead: z.boolean(),
   comprehension: z.number(),
   memo: z.string(),
