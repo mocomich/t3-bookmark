@@ -73,7 +73,7 @@ export const CategorySelect: React.FC<Props> = memo(({ formName }) => {
           instanceId='select'
           options={selectOptions}
           styles={customStyles}
-          placeholder='複数選択できます'
+          placeholder='複数選択できます (最大3つまで)'
           onChange={onChange}
           onBlur={onBlur}
           name={name}
