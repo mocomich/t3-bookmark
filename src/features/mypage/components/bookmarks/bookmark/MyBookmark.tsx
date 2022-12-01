@@ -49,7 +49,7 @@ const styles = {
     background: "white",
     boxShadow: BOX_SHADOW.lg,
     display: "grid",
-    gridTemplateRows: "140px 2fr 1fr",
+    gridTemplateRows: "140px auto auto",
     minHeight: "280px",
     borderRadius: "12px",
   }),
@@ -69,6 +69,7 @@ const styles = {
   }),
   bottom: css({
     display: "grid",
+    alignItems: "flex-end",
     gridTemplateColumns: "auto 56px",
     justifyContent: "space-between",
     padding: "12px",
