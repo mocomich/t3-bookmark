@@ -7,6 +7,7 @@ import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { memo } from "react";
+import { GrSearch } from "react-icons/gr";
 
 import { Avatar } from "./Avatar";
 import { DropdownMenu } from "./DropDownMenu";
@@ -29,9 +30,14 @@ export const Header: React.FC = memo(() => {
         <nav>
           <ul css={styles.links}>
             {session?.user?.image && (
-              <DropdownMenu
-                triggerComponent={<Avatar imageUrl={session?.user?.image} />}
-              />
+              <>
+                <Link href='/mypage/search'>
+                  <GrSearch css={styles.icon} size={28} />
+                </Link>
+                <DropdownMenu
+                  triggerComponent={<Avatar imageUrl={session?.user?.image} />}
+                />
+              </>
             )}
             <div className='w-24'>
               <Button
@@ -69,5 +75,9 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: vwCalcFn(32),
+  }),
+  icon: css({
+    cursor: "pointer",
+    padding: "2px",
   }),
 };
