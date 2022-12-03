@@ -16,15 +16,20 @@ type MyBookmarkProps = Pick<Bookmark, "id" | "url" | "title" | "updatedAt">;
 type Props = {
   imageId: number;
   categories: { id: string; name: string }[];
+  tags?: { id: string; name: string }[];
 } & MyBookmarkProps;
 
 export const MyBookmark: React.FC<Props> = memo(
-  ({ id, imageId, url, title, updatedAt, categories }) => {
+  ({ id, imageId, url, title, updatedAt, categories, tags }) => {
     return (
       <article css={styles.container}>
         <UtilLink style={styles.head} href={url}>
           <div css={styles.top}>
-            <Tag tag='TAG' />
+            <div css={styles.tags}>
+              {tags?.map((tag) => (
+                <Tag key={tag.id} name={tag.name} />
+              ))}
+            </div>
             <MemoIcon id={id} />
           </div>
           <HeadImage imageId={imageId} />
@@ -57,12 +62,16 @@ const styles = {
     background: "#71abb3",
     position: "relative",
     borderRadius: "6px 6px 0 0",
-    padding: "12px",
+    padding: "8px",
   }),
   top: css({
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignContent: "flex-start",
+  }),
+  tags: css({
+    display: "flex",
+    gap: "4px",
   }),
   content: css({
     padding: "12px",

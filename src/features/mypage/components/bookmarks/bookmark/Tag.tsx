@@ -3,16 +3,19 @@ import { css } from "@emotion/react";
 import { memo } from "react";
 
 type Props = {
-  tag: string;
+  name?: string;
 };
 
-export const Tag: React.FC<Props> = memo(({ tag }) => {
-  return <div css={styles.tag}>#{tag}</div>;
+export const Tag: React.FC<Props> = memo(({ name }) => {
+  return <div css={styles.tag}>{name}</div>;
 });
 
 const styles = {
   tag: css({
-    fontSize: "14px",
+    display: "grid",
+    placeItems: "center",
+    fontSize: "12px",
+    height: "29px",
     fontWeight: "bold",
     padding: "4px 8px",
     background: COLORS.orange,
