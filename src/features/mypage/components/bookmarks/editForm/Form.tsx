@@ -7,7 +7,7 @@ import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Bookmark, Category } from "@prisma/client";
+import { Bookmark, Category, Tag } from "@prisma/client";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -17,15 +17,16 @@ import { TextInput } from "./TextInput";
 import { CategorySelect } from "./category/CategorySelect";
 import { ToggleSwitch } from "./isRead/ToogleSwitch";
 import { MemoForm } from "./memo/MemoForm";
+import { TagSelect } from "./tag/TagSelect";
 import { Comprehension } from "./understanding/Comprehension";
 import { RangeInput } from "./understanding/RangeInput";
 
 type Props = {
-  bookmark?: Bookmark & { categories: Category[] };
+  bookmark?: Bookmark & { categories: Category[] } & { tags: Tag[] };
 };
 
 export const Form: React.FC<Props> = memo(({ bookmark }) => {
-  const { url, title, comprehension, categories, isRead, memo } = {
+  const { url, title, comprehension, categories, tags, isRead, memo } = {
     ...bookmark,
   };
   // ビジネスロジックをcustomHooksに切り出す
@@ -38,7 +39,8 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
     url: url ? url : "",
     title: title ? title : "",
     comprehension: comprehension ? comprehension : 0,
-    categories: categories ? _convertCategories(categories) : [],
+    categories: categories ? _convert(categories) : [],
+    tags: tags ? _convert(tags) : [],
     isRead: isRead ? true : false,
     memo: memo ? memo : "",
   };
@@ -65,18 +67,18 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
   };
 
   function _validateComprehension(isRead: boolean, comprehension: number) {
-    if (comprehension !== 1 && !isRead) {
+    if (comprehension !== 0 && !isRead) {
       alert("未読の記事は理解度を0%以外に設定出来ません");
       return false;
     }
     return true;
   }
 
-  function _convertCategories(categories: Category[]) {
-    if (!categories) {
+  function _convert<T extends { id: string; name: string }>(array: T[]) {
+    if (!array) {
       return [];
     }
-    return categories.map((category) => ({
+    return array.map((category) => ({
       label: category.name,
       value: category.id,
     }));
@@ -139,6 +141,12 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
           isRequired
         >
           <CategorySelect formName='categories' />
+        </FormContent>
+        <FormContent
+          title={"Tags"}
+          errorMessage={methods.formState.errors["tags"]?.message}
+        >
+          <TagSelect formName='tags' />
         </FormContent>
         <MemoForm
           memo={methods.watch("memo")}
