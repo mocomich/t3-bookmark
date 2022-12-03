@@ -18,13 +18,22 @@ model Bookmark {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt()
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  categories        Category[]  @relation("bookmark_categories")
+  categories    Category[]  @relation("bookmark_categories")
+  tags          Tag[] @relation("bookmark_tags")
 }
 
 model Category {
   id   String   @id @default(cuid())
-  name String
+  name String 
   bookmarks Bookmark[] @relation("bookmark_categories")
+}
+
+model Tag {
+  id   String   @id @default(cuid())
+  name String
+  bookmarks Bookmark[] @relation("bookmark_tags")
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
@@ -63,6 +72,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     bookmarks     Bookmark[]
+    tags          Tag[]
 }
 
 model VerificationToken {
