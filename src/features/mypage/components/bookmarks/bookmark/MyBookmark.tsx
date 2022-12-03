@@ -81,6 +81,6 @@ const styles = {
     alignItems: "flex-end",
     gridTemplateColumns: "auto 56px",
     justifyContent: "space-between",
-    padding: "12px",
+    padding: "8px",
   }),
 };
