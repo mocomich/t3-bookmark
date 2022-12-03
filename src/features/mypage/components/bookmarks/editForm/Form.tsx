@@ -88,6 +88,7 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
         <FormContent
           title={methods.watch("isRead") ? "Read" : "UnRead"}
           errorMessage={methods.formState.errors["isRead"]?.message}
+          isRequired
         >
           <ToggleSwitch
             name={"isRead"}
@@ -98,6 +99,7 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
         <FormContent
           title={"Understanding"}
           errorMessage={methods.formState.errors["comprehension"]?.message}
+          isRequired
         >
           <div css={styles.comprehension}>
             <Comprehension />
@@ -114,6 +116,7 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
         <FormContent
           title={"URL"}
           errorMessage={methods.formState.errors["url"]?.message}
+          isRequired
         >
           <TextInput
             placeholder='https://hoge.com'
@@ -123,6 +126,7 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
         <FormContent
           title={"Title"}
           errorMessage={methods.formState.errors["title"]?.message}
+          isRequired
         >
           <TextInput
             placeholder='TypeScriptの初心者向け記事'
@@ -132,6 +136,7 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
         <FormContent
           title={"Categories"}
           errorMessage={methods.formState.errors["categories"]?.message}
+          isRequired
         >
           <CategorySelect formName='categories' />
         </FormContent>
