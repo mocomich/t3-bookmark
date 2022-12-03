@@ -11,6 +11,10 @@ export const createBookmarkSchema = z.object({
     .array(z.object({ value: z.string(), label: z.string() }))
     .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` })
     .max(3, { message: `カテゴリーは最大3つ${ERROR_MESSAGE.max}` }),
+  tags: z
+    .array(z.object({ value: z.string(), label: z.string() }))
+    .max(2, { message: `タグは最大2つ${ERROR_MESSAGE.max}` })
+    .optional(),
   comprehension: z.number(),
   isRead: z.boolean(),
   memo: z.string(),
@@ -27,6 +31,10 @@ export const updateBookmarkSchema = z.object({
     .array(z.object({ value: z.string(), label: z.string() }))
     .min(1, { message: `カテゴリー${ERROR_MESSAGE.required}` })
     .max(3, { message: `カテゴリーは最大3つ${ERROR_MESSAGE.max}` }),
+  tags: z
+    .array(z.object({ value: z.string(), label: z.string() }))
+    .max(2, { message: `タグは最大2つ${ERROR_MESSAGE.max}` })
+    .optional(),
   isRead: z.boolean(),
   comprehension: z.number(),
   memo: z.string(),
@@ -47,4 +55,12 @@ export const getSingleBookmarkByIdSchema = z.object({
 export const getBookmarksInputSchema = z.object({
   page: z.number().nullish(),
   limit: z.number().nullish(),
+});
+
+export const createTagSchema = z.object({
+  name: z.string().max(8, { message: `タグは8文字${ERROR_MESSAGE.max}` }),
+});
+
+export const deleteTagSchema = z.object({
+  id: z.string().cuid(),
 });
