@@ -3,6 +3,7 @@ import { z } from "zod";
 import { MY_BOOKMARK_LINK_LIST, SETTING_LINK_LIST } from "../const";
 import {
   createBookmarkSchema,
+  createTagSchema,
   deleteBookmarkSchema,
   getSingleBookmarkByIdSchema,
   updateBookmarkSchema,
@@ -21,3 +22,5 @@ export type BookmarkTitlesType = typeof MY_BOOKMARK_LINK_LIST[number]["title"];
 
 export type SettingLinkPathsType = typeof SETTING_LINK_LIST[number]["path"];
 export type SettingLinkTitlesType = typeof SETTING_LINK_LIST[number]["title"];
+
+export type CreateTagType = z.infer<typeof createTagSchema>;
