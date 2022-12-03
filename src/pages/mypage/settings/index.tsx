@@ -1,4 +1,5 @@
 import { Space } from "@/components/util-elements/Space";
+import { Setting } from "@/features/mypage/components/settings/Setting";
 import { SettingLinks } from "@/features/mypage/components/settings/links/SettingLinks";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
@@ -24,6 +25,7 @@ const SettingsPage: NextPage = () => {
     <div>
       <SettingLinks />
       <Space axis='VERTICAL' size={80} />
+      <Setting />
       <Space axis='VERTICAL' size={40} />
     </div>
   );
