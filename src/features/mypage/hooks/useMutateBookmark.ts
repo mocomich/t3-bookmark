@@ -17,16 +17,8 @@ export const useMutateBookmark = () => {
   });
 
   const updateBookmarkMutation = trpc.bookmark.updateBookmark.useMutation({
-    onSuccess: (res) => {
-      const previousMyBookmarks =
-        utils.bookmark.getAllBookmarksByUserId.getData();
-      if (previousMyBookmarks) {
-        utils.bookmark.getAllBookmarksByUserId.setData([
-          ...previousMyBookmarks.map((bookmark) =>
-            bookmark.id === res.id ? res : bookmark
-          ),
-        ]);
-      }
+    onSuccess: () => {
+      utils.bookmark.getAllBookmarksByUserId.refetch();
     },
   });
 
