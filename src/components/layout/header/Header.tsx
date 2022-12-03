@@ -18,8 +18,13 @@ export const Header: React.FC = memo(() => {
   const { data: session } = useSession();
   const { open, setOpen, onClickOpen } = useModal();
 
+  // hooksにして共通化したい
   const onClickToCreatePage = () => {
     router.push("/mypage/edit");
+  };
+
+  const onClickToSearchPage = () => {
+    router.push("/mypage/search");
   };
 
   return (
@@ -31,9 +36,9 @@ export const Header: React.FC = memo(() => {
           <ul css={styles.links}>
             {session?.user?.image && (
               <>
-                <Link href='/mypage/search'>
+                <button onClick={onClickToSearchPage}>
                   <GrSearch css={styles.icon} size={28} />
-                </Link>
+                </button>
                 <DropdownMenu
                   triggerComponent={<Avatar imageUrl={session?.user?.image} />}
                 />
