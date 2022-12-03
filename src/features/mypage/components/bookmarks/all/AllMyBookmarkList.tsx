@@ -27,6 +27,7 @@ export const AllMyBookmarkList: React.FC<Props> = ({ currentPage }) => {
           url={bookmark.url}
           title={bookmark.title}
           categories={bookmark.categories}
+          tags={bookmark.tags}
           updatedAt={bookmark.updatedAt}
         />
       ))}
