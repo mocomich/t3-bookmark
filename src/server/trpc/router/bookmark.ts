@@ -19,6 +19,7 @@ export const bookmarkRouter = t.router({
         },
         include: {
           categories: true,
+          tags: true,
         },
       });
       return bookmark;
@@ -33,6 +34,7 @@ export const bookmarkRouter = t.router({
           userId: ctx.session?.user?.id,
         },
         include: {
+          tags: true,
           categories: true,
         },
         skip: limit * (page - 1),
@@ -65,6 +67,7 @@ export const bookmarkRouter = t.router({
         },
         include: {
           categories: true,
+          tags: true,
         },
         skip: limit * (page - 1),
         take: limit,
@@ -97,6 +100,7 @@ export const bookmarkRouter = t.router({
         },
         include: {
           categories: true,
+          tags: true,
         },
         skip: limit * (page - 1),
         take: limit,
@@ -148,9 +152,12 @@ export const bookmarkRouter = t.router({
   createBookmark: authedProcedure
     .input(createBookmarkSchema)
     .mutation(async ({ ctx, input }) => {
-      const sendData = removeCategories({ ...input });
+      const sendData = remove({ ...input });
       const categoryIds = input.categories.map((category) => ({
         id: category.value,
+      }));
+      const tagIds = input.tags?.map((tag) => ({
+        id: tag.value,
       }));
 
       const bookmark = await ctx.prisma.bookmark.create({
@@ -158,6 +165,9 @@ export const bookmarkRouter = t.router({
           ...sendData,
           categories: {
             connect: [...categoryIds],
+          },
+          tags: {
+            connect: tagIds,
           },
           user: {
             connect: {
@@ -167,6 +177,7 @@ export const bookmarkRouter = t.router({
         },
         include: {
           categories: true,
+          tags: true,
         },
       });
       return bookmark;
@@ -176,14 +187,22 @@ export const bookmarkRouter = t.router({
     .input(updateBookmarkSchema)
     .mutation(async ({ ctx, input }) => {
       const bookmarkId = input.id;
-      const sendData = removeCategories({ ...input });
+      const sendData = remove({ ...input });
+
       const categoryIds = input.categories.map((category) => ({
         id: category.value,
+      }));
+
+      const tagIds = input.tags?.map((tag) => ({
+        id: tag.value,
       }));
 
       await ctx.prisma.bookmark.update({
         data: {
           categories: {
+            set: [],
+          },
+          tags: {
             set: [],
           },
         },
@@ -198,6 +217,9 @@ export const bookmarkRouter = t.router({
           categories: {
             connect: [...categoryIds],
           },
+          tags: {
+            connect: tagIds ? [...tagIds] : [],
+          },
           user: {
             connect: {
               id: ctx.session?.user?.id,
@@ -209,15 +231,16 @@ export const bookmarkRouter = t.router({
         },
         include: {
           categories: true,
+          tags: true,
         },
       });
       return bookmark;
     }),
 });
 
-const removeCategories = (
+const remove = (
   obj: CreateBookmarkType
-): Omit<CreateBookmarkType, "categories"> => {
-  const { categories, ...data } = obj;
+): Omit<CreateBookmarkType, "categories" | "tags"> => {
+  const { categories, tags, ...data } = obj;
   return data;
 };
