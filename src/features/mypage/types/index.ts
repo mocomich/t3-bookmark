@@ -6,6 +6,7 @@ import {
   createTagSchema,
   deleteBookmarkSchema,
   getSingleBookmarkByIdSchema,
+  keywordSearchSchema,
   updateBookmarkSchema,
 } from "../schema";
 
@@ -24,3 +25,5 @@ export type SettingLinkPathsType = typeof SETTING_LINK_LIST[number]["path"];
 export type SettingLinkTitlesType = typeof SETTING_LINK_LIST[number]["title"];
 
 export type CreateTagType = z.infer<typeof createTagSchema>;
+
+export type keywordSearch = z.infer<typeof keywordSearchSchema>;
