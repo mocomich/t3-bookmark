@@ -31,6 +31,7 @@ export const SearchInput: React.FC<Props> = memo(({ onChangeHandler }) => {
         onBlur={() => setIsFocus(false)}
         onChange={onChangeHandler}
       />
+      {isFocus && <button css={styles.button}>Enterで検索</button>}
     </form>
   );
 });
@@ -53,5 +54,14 @@ const styles = {
     height: "32px",
     padding: "12px",
     outline: "none",
+  }),
+  button: css({
+    fontSize: "12px",
+    width: "100px",
+    justifyContent: "flex-end",
+    color: "#6e7b85",
+    background: COLORS.lightGray,
+    padding: "2px",
+    borderRadius: "6px",
   }),
 };
