@@ -1,4 +1,5 @@
 import { Button } from "@/components/util-elements/Button";
+import { Space } from "@/components/util-elements/Space";
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { useMutateBookmark } from "@/features/mypage/hooks/useMutateBookmark";
 import { createBookmarkSchema } from "@/features/mypage/schema";
@@ -12,6 +13,7 @@ import { useRouter } from "next/router";
 import { memo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
+import { TagLink } from "../../utils/TagLink";
 import { FormContent } from "./FormContent";
 import { TextInput } from "./TextInput";
 import { CategorySelect } from "./category/CategorySelect";
@@ -143,11 +145,13 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
           <CategorySelect formName='categories' />
         </FormContent>
         <FormContent
-          title={"Tags"}
+          title={"Custom Tags"}
           errorMessage={methods.formState.errors["tags"]?.message}
         >
           <TagSelect formName='tags' />
         </FormContent>
+        <TagLink />
+        <Space axis='VERTICAL' size={20} />
         <MemoForm
           memo={methods.watch("memo")}
           register={methods.register("memo")}
