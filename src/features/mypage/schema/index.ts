@@ -64,3 +64,15 @@ export const createTagSchema = z.object({
 export const deleteTagSchema = z.object({
   id: z.string().cuid(),
 });
+
+export const keywordSearchSchema = z.object({
+  keyword: z.string(),
+});
+
+export const categorySearchSchema = z.object({
+  category: z.object({ value: z.string(), label: z.string() }),
+});
+
+export const tagSearchSchema = z.object({
+  category: z.object({ value: z.string(), label: z.string() }),
+});
