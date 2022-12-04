@@ -8,32 +8,43 @@ import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
+import { ErrorMessage } from "../../bookmarks/editForm/ErrorMessage";
+
 export const CreateTagForm = () => {
+  // TODO: hooks化
   const { createTagMutation } = useMutateTag();
 
   const defaultValues: CreateTagType = {
     name: "",
   };
 
-  const methods = useForm<CreateTagType>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateTagType>({
     defaultValues,
     resolver: zodResolver(createTagSchema),
   });
 
   const onSubmit = (input: CreateTagType) => {
+    if (input.name === "") return;
     createTagMutation.mutate(input);
+    reset();
   };
   return (
-    <form onSubmit={methods.handleSubmit(onSubmit)} css={styles.container}>
+    <form onSubmit={handleSubmit(onSubmit)} css={styles.container}>
       <input
         css={styles.input}
         type='text'
         placeholder='8文字以内'
-        {...methods.register("name")}
+        {...register("name")}
       />
       <Button size='small'>
         <TypoGraphy variant='large'>Add</TypoGraphy>
       </Button>
+      <ErrorMessage>{errors.name?.message}</ErrorMessage>
     </form>
   );
 };

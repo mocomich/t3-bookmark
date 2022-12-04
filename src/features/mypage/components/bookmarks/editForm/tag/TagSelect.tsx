@@ -7,7 +7,6 @@ import ReactSelect, {
   CSSObjectWithLabel,
   OptionProps,
   SingleValueProps,
-  ValueContainerProps,
 } from "react-select";
 
 type Props = {
@@ -27,6 +26,10 @@ export const TagSelect: React.FC<Props> = memo(({ formName }) => {
       ...base,
       cursor: "pointer",
       background: state.isSelected ? COLORS.orange : undefined,
+      ":active": {
+        ...base[":active"],
+        backgroundColor: state.isSelected ? COLORS.orange : undefined,
+      },
       ":hover": {
         background: COLORS.orange,
         opacity: "0.8",
