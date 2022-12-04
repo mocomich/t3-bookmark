@@ -15,12 +15,12 @@ export const Setting = () => {
       <TypoGraphy variant='h3' isResponsive>
         カスタムタグを追加
       </TypoGraphy>
+      <CreateTagForm />
       <div css={styles.tags}>
         {tags?.map((tag) => (
           <TagLabel key={tag.id} id={tag.id} name={tag.name} />
         ))}
       </div>
-      <CreateTagForm />
     </div>
   );
 };
@@ -43,10 +43,14 @@ const styles = {
       padding: "20px",
     },
   }),
-
   tags: css({
     display: "flex",
     flexWrap: "wrap",
     gap: "12px",
+  }),
+  link: css({
+    color: COLORS.gray,
+    fontWeight: "bold",
+    cursor: "pointer",
   }),
 };
