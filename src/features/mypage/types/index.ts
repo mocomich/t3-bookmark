@@ -26,4 +26,4 @@ export type SettingLinkTitlesType = typeof SETTING_LINK_LIST[number]["title"];
 
 export type CreateTagType = z.infer<typeof createTagSchema>;
 
-export type keywordSearch = z.infer<typeof keywordSearchSchema>;
+export type KeywordSearchType = z.infer<typeof keywordSearchSchema>;
