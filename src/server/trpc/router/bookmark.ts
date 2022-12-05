@@ -1,12 +1,12 @@
-import { DEFAULT_LIMIT, PATH_LIST } from "@/features/mypage/const";
 import {
   createBookmarkSchema,
   getBookmarksInputSchema,
   getSingleBookmarkByIdSchema,
   keywordSearchSchema,
   updateBookmarkSchema,
-} from "@/features/mypage/schema";
-import { CreateBookmarkType } from "@/features/mypage/types";
+} from "@/schema";
+import { CreateBookmarkType } from "@/types";
+import { DEFAULT_LIMIT, PATH_LIST } from "@/utils/const";
 
 import { authedProcedure, t } from "../trpc";
 

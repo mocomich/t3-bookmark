@@ -1,4 +1,4 @@
-import { createTagSchema, deleteTagSchema } from "@/features/mypage/schema";
+import { createTagSchema, deleteTagSchema } from "@/schema";
 
 import { authedProcedure, t } from "../trpc";
 

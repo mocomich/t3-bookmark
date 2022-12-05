@@ -1,8 +1,8 @@
 import { Button } from "@/components/util-elements/Button";
-import { useModal } from "@/hooks/utils/useModal";
-import { useNavigation } from "@/hooks/utils/useNavigation";
 import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { vwCalcFn } from "@/styles/mixin";
+import { useModal } from "@/utils/hooks/useModal";
+import { useNavigation } from "@/utils/hooks/useNavigation";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -47,9 +47,7 @@ export const Header: React.FC = memo(() => {
               <Button
                 size='medium'
                 color={session ? "green" : "blue"}
-                onClick={
-                  session ? () => navigate("/mypage/search") : onClickOpen
-                }
+                onClick={session ? () => navigate("/mypage/edit") : onClickOpen}
               >
                 {session ? "Add New" : "Login"}
               </Button>

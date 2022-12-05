@@ -1,5 +1,5 @@
 import { Space } from "@/components/util-elements/Space";
-import { Form } from "@/features/mypage/components/bookmarks/editForm/Form";
+import { Form } from "@/features/myBookmarks/components/editForm/Form";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 

@@ -1,4 +1,4 @@
-import { Detail } from "@/features/mypage/components/bookmarks/deitail/Detail";
+import { Detail } from "@/features/myBookmarks/components/deitail/Detail";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";

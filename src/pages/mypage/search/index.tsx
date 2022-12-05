@@ -1,5 +1,5 @@
 import { Space } from "@/components/util-elements/Space";
-import { Search } from "@/features/mypage/components/seatch/Search";
+import { Search } from "@/features/search/components/Search";
 import { NextPage } from "next";
 
 const SearchPage: NextPage = () => {

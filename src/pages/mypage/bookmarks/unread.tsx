@@ -1,6 +1,6 @@
 import { Space } from "@/components/util-elements/Space";
-import { MyBookmarkLinks } from "@/features/mypage/components/bookmarks/links/MyBookmarkLinks";
-import { UnReadMyBookmarks } from "@/features/mypage/components/bookmarks/unRead/UnReadMyBookmarks";
+import { MyBookmarkLinks } from "@/features/myBookmarks/components/links/MyBookmarkLinks";
+import { UnReadMyBookmarks } from "@/features/myBookmarks/components/unRead/UnReadMyBookmarks";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 

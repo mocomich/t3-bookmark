@@ -1,6 +1,6 @@
 import { Space } from "@/components/util-elements/Space";
-import { Setting } from "@/features/mypage/components/settings/Setting";
-import { SettingLinks } from "@/features/mypage/components/settings/links/SettingLinks";
+import { Setting } from "@/features/setting/components/Setting";
+import { SettingLinks } from "@/features/setting/components/links/SettingLinks";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
