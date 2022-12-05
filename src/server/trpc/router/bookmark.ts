@@ -3,6 +3,7 @@ import {
   createBookmarkSchema,
   getBookmarksInputSchema,
   getSingleBookmarkByIdSchema,
+  keywordSearchSchema,
   updateBookmarkSchema,
 } from "@/features/mypage/schema";
 import { CreateBookmarkType } from "@/features/mypage/types";
@@ -152,7 +153,7 @@ export const bookmarkRouter = t.router({
   createBookmark: authedProcedure
     .input(createBookmarkSchema)
     .mutation(async ({ ctx, input }) => {
-      const sendData = remove({ ...input });
+      const sendData = _remove({ ...input });
       const categoryIds = input.categories.map((category) => ({
         id: category.value,
       }));
@@ -187,7 +188,7 @@ export const bookmarkRouter = t.router({
     .input(updateBookmarkSchema)
     .mutation(async ({ ctx, input }) => {
       const bookmarkId = input.id;
-      const sendData = remove({ ...input });
+      const sendData = _remove({ ...input });
 
       const categoryIds = input.categories.map((category) => ({
         id: category.value,
@@ -236,9 +237,29 @@ export const bookmarkRouter = t.router({
       });
       return bookmark;
     }),
+
+  getSearchedBookmarksByKeyword: authedProcedure
+    .input(keywordSearchSchema)
+    .query(async ({ ctx, input }) => {
+      const bookmarks = await ctx.prisma.bookmark.findMany({
+        where: {
+          title: {
+            contains: input.keyword,
+          },
+        },
+        include: {
+          categories: true,
+          tags: true,
+        },
+        orderBy: {
+          updatedAt: "desc",
+        },
+      });
+      return bookmarks;
+    }),
 });
 
-const remove = (
+const _remove = (
   obj: CreateBookmarkType
 ): Omit<CreateBookmarkType, "categories" | "tags"> => {
   const { categories, tags, ...data } = obj;
