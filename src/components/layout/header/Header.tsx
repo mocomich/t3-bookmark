@@ -1,12 +1,11 @@
 import { Button } from "@/components/util-elements/Button";
-import { Link } from "@/components/util-elements/Link";
 import { useModal } from "@/hooks/utils/useModal";
+import { useNavigation } from "@/hooks/utils/useNavigation";
 import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { memo } from "react";
 import { GrSearch } from "react-icons/gr";
 
@@ -15,23 +14,15 @@ import { DropdownMenu } from "./DropDownMenu";
 import { LoginModal } from "./LoginModal";
 
 export const Header: React.FC = memo(() => {
-  const router = useRouter();
   const { data: session } = useSession();
   const { open, setOpen, onClickOpen } = useModal();
 
-  // hooksにして共通化したい
-  const onClickToCreatePage = () => {
-    router.push("/mypage/edit");
-  };
-
-  const onClickToSearchPage = () => {
-    router.push("/mypage/search");
-  };
+  const { navigate } = useNavigation();
 
   return (
     <header css={styles.header}>
       <div css={styles.headerInner}>
-        <Link href='/'>
+        <button onClick={() => navigate("/")}>
           <Image
             css={styles.image}
             src={`/assets/logo.png`}
@@ -39,12 +30,12 @@ export const Header: React.FC = memo(() => {
             height={36}
             alt='犬のアイコン画像'
           />
-        </Link>
+        </button>
         <nav>
           <ul css={styles.links}>
             {session?.user?.image && (
               <>
-                <button onClick={onClickToSearchPage}>
+                <button onClick={() => navigate("/mypage/search")}>
                   <GrSearch css={styles.icon} size={28} />
                 </button>
                 <DropdownMenu
@@ -56,7 +47,9 @@ export const Header: React.FC = memo(() => {
               <Button
                 size='medium'
                 color={session ? "green" : "blue"}
-                onClick={session ? onClickToCreatePage : onClickOpen}
+                onClick={
+                  session ? () => navigate("/mypage/search") : onClickOpen
+                }
               >
                 {session ? "Add New" : "Login"}
               </Button>
