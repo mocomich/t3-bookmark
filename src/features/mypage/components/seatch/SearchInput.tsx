@@ -1,40 +1,42 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import { memo, useState } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 import { GrSearch } from "react-icons/gr";
 
 type Props = {
-  keyword: string;
-  onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onSubmit: (e: React.FocusEvent<HTMLFormElement>) => void;
+  register: UseFormRegisterReturn;
 };
 
-export const SearchInput: React.FC<Props> = memo(({ onChangeHandler }) => {
-  const [isFocus, setIsFocus] = useState(false);
+export const SearchInput: React.FC<Props> = memo(
+  ({ value, onSubmit, register }) => {
+    const [isFocus, setIsFocus] = useState(false);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
-  return (
-    <form onSubmit={onSubmit} css={styles.container(isFocus)}>
-      <label htmlFor='search'>
-        <GrSearch size={20} />
-      </label>
-      <input
-        css={styles.input}
-        type='text'
-        id='search'
-        name='search'
-        placeholder='キーワードを入力してください...'
-        autoComplete='off'
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={onChangeHandler}
-      />
-      {isFocus && <button css={styles.button}>Enterで検索</button>}
-    </form>
-  );
-});
+    return (
+      <form onSubmit={onSubmit} css={styles.container(isFocus)}>
+        <label htmlFor='search'>
+          <GrSearch css={styles.icon} size={20} />
+        </label>
+        <input
+          css={styles.input}
+          type='text'
+          id='search'
+          placeholder='キーワードを入力してください...'
+          autoComplete='off'
+          {...register}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          value={value}
+        />
+        <button css={styles.button(isFocus)} type='submit'>
+          Enterで検索
+        </button>
+      </form>
+    );
+  }
+);
 
 const styles = {
   container: (isFocus: boolean) =>
@@ -55,13 +57,19 @@ const styles = {
     padding: "12px",
     outline: "none",
   }),
-  button: css({
-    fontSize: "12px",
-    width: "100px",
-    justifyContent: "flex-end",
-    color: "#6e7b85",
-    background: COLORS.lightGray,
-    padding: "2px",
-    borderRadius: "6px",
+  icon: css({
+    color: COLORS.green,
   }),
+  button: (isFocus: boolean) =>
+    css({
+      transition: "opacity 1s ease-out",
+      opacity: isFocus ? 1 : 0,
+      fontSize: "12px",
+      width: "100px",
+      justifyContent: "flex-end",
+      color: "#6e7b85",
+      background: COLORS.lightGray,
+      padding: "2px",
+      borderRadius: "6px",
+    }),
 };

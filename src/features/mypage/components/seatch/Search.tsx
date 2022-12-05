@@ -1,60 +1,38 @@
 import { Space } from "@/components/util-elements/Space";
-import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
-import { trpc } from "@/utils/trpc";
 import { css } from "@emotion/react";
-import { Category, Tag } from "@prisma/client";
-import { useState } from "react";
 
-import { TagLink } from "../utils/TagLink";
-import { Categories } from "./Categories";
+import { useSearchBookmark } from "../../hooks/useSearchBookmark";
 import { SearchInput } from "./SearchInput";
-import { Tags } from "./Tags";
+import { SearchTopics } from "./SearchTopics";
+import { SearchResult } from "./result/SearchResult";
 
 export const Search = () => {
-  const [keyword, setKeyword] = useState("");
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-  };
-
-  const { data: categories } = trpc.category.getAllCategories.useQuery();
-  const { data: tags } = trpc.tag.getAllTags.useQuery();
-
-  const filteredCategories = getFilteredCategory(keyword, categories);
-  const filteredTags = getFilteredTag(keyword, tags);
-
-  function getFilteredCategory(
-    keyword: string,
-    categories: Category[] | undefined
-  ) {
-    if (categories === undefined) return;
-    return categories.filter((category) => category.name.includes(keyword));
-  }
-
-  function getFilteredTag(keyword: string, Tags: Tag[] | undefined) {
-    if (Tags === undefined) return;
-    return Tags.filter((tag) => tag.name.includes(keyword));
-  }
+  const { keyword, keywordQuery, isEmptyQuery, onSubmitHandler, register } =
+    useSearchBookmark();
 
   return (
     <div css={styles.container}>
-      <SearchInput keyword={keyword} onChangeHandler={onChangeHandler} />
-      <Space axis='HORIZONTAL' size={40} />
-      <TypoGraphy variant='h3'>カテゴリー</TypoGraphy>
-      <Categories categories={filteredCategories} />
-      <TypoGraphy variant='h3'>タグ</TypoGraphy>
-      <Tags tags={filteredTags} />
-      <Space axis='HORIZONTAL' size={20} />
-      <TagLink />
+      <SearchInput
+        value={keyword}
+        onSubmit={onSubmitHandler}
+        register={register("keyword")}
+      />
+      <Space axis='VERTICAL' size={40} />
+      {isEmptyQuery && keywordQuery !== "" ? (
+        <SearchResult />
+      ) : (
+        <SearchTopics keyword={keyword} />
+      )}
     </div>
   );
 };
 
 const styles = {
   container: css({
-    width: "80%",
+    maxWidth: "1120px",
+    width: "100%",
     margin: "0 auto",
     height: "100%",
     padding: "40px",
