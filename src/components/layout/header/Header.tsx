@@ -5,6 +5,7 @@ import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { GrSearch } from "react-icons/gr";
@@ -30,8 +31,15 @@ export const Header: React.FC = memo(() => {
   return (
     <header css={styles.header}>
       <div css={styles.headerInner}>
-        {/* TODO: ロゴ設置 */}
-        <Link href='/'>Stock</Link>
+        <Link href='/'>
+          <Image
+            css={styles.image}
+            src={`/assets/logo.png`}
+            width={124}
+            height={36}
+            alt='犬のアイコン画像'
+          />
+        </Link>
         <nav>
           <ul css={styles.links}>
             {session?.user?.image && (
@@ -68,7 +76,7 @@ const styles = {
     display: "grid",
   }),
   headerInner: css({
-    maxWidth: LAYOUT_WIDTH,
+    maxWidth: LAYOUT_WIDTH + 40,
     width: "100%",
     margin: "0 auto",
     display: "flex",
@@ -84,5 +92,11 @@ const styles = {
   icon: css({
     cursor: "pointer",
     padding: "2px",
+  }),
+  image: css({
+    cursor: "pointer",
+    ":hover": {
+      opacity: "0.7",
+    },
   }),
 };
