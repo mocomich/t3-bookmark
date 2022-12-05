@@ -30,7 +30,7 @@ const styles = {
     padding: "6px 12px",
     borderRadius: "6px",
     color: "white",
-    background: COLORS.green,
+    background: COLORS.blue,
     cursor: "pointer",
     boxShadow: BOX_SHADOW.md,
   }),
