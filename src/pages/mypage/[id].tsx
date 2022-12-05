@@ -1,5 +1,4 @@
 import { Detail } from "@/features/mypage/components/bookmarks/deitail/Detail";
-import { Form } from "@/features/mypage/components/bookmarks/editForm/Form";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
