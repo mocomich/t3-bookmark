@@ -5,20 +5,24 @@ export const ERROR_MESSAGE = {
 };
 
 export const PATH_LIST = {
-  all: "/mypage/bookmarks/all",
-  unread: "/mypage/bookmarks/unread",
-  read: "/mypage/bookmarks/read",
+  home: "/",
+  edit: "/mypage/edit",
+  search: "mypage/search",
+  topics: "mypage/topics",
+  allBookmarks: "/mypage/bookmarks/all",
+  unreadBookmarks: "/mypage/bookmarks/unread",
+  readBookmarks: "/mypage/bookmarks/read",
   settings: "/mypage/settings",
 } as const;
 
 export const MY_BOOKMARK_LINK_LIST = [
-  { path: PATH_LIST["all"], title: "All Bookmarks" },
+  { path: PATH_LIST["allBookmarks"], title: "All Bookmarks" },
   {
-    path: PATH_LIST["unread"],
+    path: PATH_LIST["unreadBookmarks"],
     title: "UnRead",
   },
   {
-    path: PATH_LIST["read"],
+    path: PATH_LIST["readBookmarks"],
     title: "Already Read",
   },
 ] as const;

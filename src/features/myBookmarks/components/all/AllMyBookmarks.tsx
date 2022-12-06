@@ -18,7 +18,7 @@ export const AllMyBookmarks = memo(() => {
   );
 
   const { isDisplayButton, page, handlePaginationChange } = usePagination(
-    PATH_LIST.all,
+    PATH_LIST.allBookmarks,
     count
   );
   return (

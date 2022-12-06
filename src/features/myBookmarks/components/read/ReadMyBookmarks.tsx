@@ -16,7 +16,7 @@ export const ReadMyBookmarks = memo(() => {
     trpc.bookmark.getCountReadBookmarksByUserId.useQuery(undefined);
 
   const { isDisplayButton, page, handlePaginationChange } = usePagination(
-    PATH_LIST.read,
+    PATH_LIST.unreadBookmarks,
     count
   );
   return (

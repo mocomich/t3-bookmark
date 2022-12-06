@@ -142,9 +142,9 @@ export const bookmarkRouter = t.router({
     });
 
     const counts = {
-      [PATH_LIST["all"]]: allCounts,
-      [PATH_LIST["unread"]]: unReadCounts,
-      [PATH_LIST["read"]]: readCounts,
+      [PATH_LIST["allBookmarks"]]: allCounts,
+      [PATH_LIST["unreadBookmarks"]]: unReadCounts,
+      [PATH_LIST["readBookmarks"]]: readCounts,
     };
 
     return counts;
