@@ -1,6 +1,7 @@
 import { Button } from "@/components/util-elements/Button";
 import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { vwCalcFn } from "@/styles/mixin";
+import { PATH_LIST } from "@/utils/const";
 import { useModal } from "@/utils/hooks/useModal";
 import { useNavigation } from "@/utils/hooks/useNavigation";
 import { css } from "@emotion/react";
@@ -22,7 +23,7 @@ export const Header: React.FC = memo(() => {
   return (
     <header css={styles.header}>
       <div css={styles.headerInner}>
-        <button onClick={() => navigate("/")}>
+        <button onClick={() => navigate(PATH_LIST["home"])}>
           <Image
             css={styles.image}
             src={`/assets/logo.png`}
@@ -35,7 +36,7 @@ export const Header: React.FC = memo(() => {
           <ul css={styles.links}>
             {session?.user?.image && (
               <>
-                <button onClick={() => navigate("/mypage/search")}>
+                <button onClick={() => navigate(PATH_LIST["search"])}>
                   <GrSearch css={styles.icon} size={28} />
                 </button>
                 <DropdownMenu
@@ -47,7 +48,9 @@ export const Header: React.FC = memo(() => {
               <Button
                 size='medium'
                 color={session ? "green" : "blue"}
-                onClick={session ? () => navigate("/mypage/edit") : onClickOpen}
+                onClick={
+                  session ? () => navigate(PATH_LIST["edit"]) : onClickOpen
+                }
               >
                 {session ? "Add New" : "Login"}
               </Button>

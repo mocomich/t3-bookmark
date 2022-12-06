@@ -1,11 +1,12 @@
 import { COLORS } from "@/styles/config/utils";
+import { PATH_LIST } from "@/utils/const";
 import { css } from "@emotion/react";
 import Link from "next/link";
 
 export const TagLink = () => {
   return (
     <div className='ml-auto'>
-      <Link href='/mypage/settings'>
+      <Link href={PATH_LIST["settings"]}>
         <span css={styles.link}>タグを作成する場合はこちら</span>
       </Link>
     </div>

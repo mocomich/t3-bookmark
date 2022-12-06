@@ -6,6 +6,7 @@ import { createBookmarkSchema } from "@/schema";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { FormDataType } from "@/types";
+import { PATH_LIST } from "@/utils/const";
 import { css } from "@emotion/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Bookmark, Category, Tag } from "@prisma/client";
@@ -65,7 +66,7 @@ export const Form: React.FC<Props> = memo(({ bookmark }) => {
       createBookmarkMutation.mutate(formData);
     }
 
-    router.push("/mypage/bookmarks/all");
+    router.push(PATH_LIST["allBookmarks"]);
   };
 
   function _validateComprehension(isRead: boolean, comprehension: number) {

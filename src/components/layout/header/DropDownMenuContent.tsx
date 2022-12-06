@@ -1,5 +1,6 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { PATH_LIST } from "@/utils/const";
 import { css, keyframes } from "@emotion/react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { signOut } from "next-auth/react";
@@ -11,13 +12,13 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 
 const LinkRoot = [
   {
-    href: "/mypage/bookmarks/all",
+    href: PATH_LIST["allBookmarks"],
     title: "Bookmarks",
     icon: <IoBook size={18} className='mr-2 mt-1' />,
     index: 1,
   },
   {
-    href: "/mypage/settings",
+    href: PATH_LIST["settings"],
     title: "Setting",
     icon: <AiFillSetting size={18} className='mr-2' />,
     index: 2,

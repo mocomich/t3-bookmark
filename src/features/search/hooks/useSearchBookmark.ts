@@ -1,4 +1,5 @@
 import { KeywordSearchType } from "@/types";
+import { PATH_LIST } from "@/utils/const";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -29,7 +30,7 @@ export const useSearchBookmark = () => {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      router.push({ pathname: `/mypage/search/`, query: { keyword } });
+      router.push({ pathname: `${PATH_LIST["search"]}/`, query: { keyword } });
     },
     [router, keyword]
   );
