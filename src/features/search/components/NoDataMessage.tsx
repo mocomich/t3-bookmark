@@ -9,7 +9,7 @@ export const NoDataMessage: React.FC<Props> = ({ searchQuery }) => {
   return (
     <div css={styles.container}>
       <TypoGraphy variant='medium'>
-        {searchQuery}の検索結果が見つかりませんでした
+        「{searchQuery}」の検索結果が見つかりませんでした
       </TypoGraphy>
     </div>
   );
