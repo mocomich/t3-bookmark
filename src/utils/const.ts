@@ -7,8 +7,7 @@ export const ERROR_MESSAGE = {
 export const PATH_LIST = {
   home: "/",
   edit: "/mypage/edit",
-  search: "mypage/search",
-  topics: "mypage/topics",
+  search: "/mypage/search",
   allBookmarks: "/mypage/bookmarks/all",
   unreadBookmarks: "/mypage/bookmarks/unread",
   readBookmarks: "/mypage/bookmarks/read",
