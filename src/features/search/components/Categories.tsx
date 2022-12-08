@@ -1,19 +1,25 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import { Category } from "@prisma/client";
+import { useRouter } from "next/router";
 
 type Props = {
   categories?: Category[];
 };
 
 export const Categories: React.FC<Props> = ({ categories }) => {
-  // TODO: SSGする
+  const router = useRouter();
+
   return (
     <div css={styles.container}>
       {categories?.map((category) => (
-        <span css={styles.category} key={category.id}>
+        <button
+          css={styles.category}
+          key={category.id}
+          onClick={() => router.push(`/mypage/categories/${category.name}`)}
+        >
           {category.name}
-        </span>
+        </button>
       ))}
     </div>
   );
