@@ -1,4 +1,5 @@
 import {
+  categorySearchSchema,
   createBookmarkSchema,
   getBookmarksInputSchema,
   getSingleBookmarkByIdSchema,
@@ -245,6 +246,28 @@ export const bookmarkRouter = t.router({
         where: {
           title: {
             contains: input.keyword,
+          },
+        },
+        include: {
+          categories: true,
+          tags: true,
+        },
+        orderBy: {
+          updatedAt: "desc",
+        },
+      });
+      return bookmarks;
+    }),
+
+  getSearchedBookmarksByCategory: authedProcedure
+    .input(categorySearchSchema)
+    .query(async ({ ctx, input }) => {
+      const bookmarks = await ctx.prisma.bookmark.findMany({
+        where: {
+          categories: {
+            some: {
+              name: input.category,
+            },
           },
         },
         include: {
