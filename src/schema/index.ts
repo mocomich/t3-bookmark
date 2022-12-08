@@ -70,9 +70,9 @@ export const keywordSearchSchema = z.object({
 });
 
 export const categorySearchSchema = z.object({
-  category: z.object({ value: z.string(), label: z.string() }),
+  category: z.string(),
 });
 
 export const tagSearchSchema = z.object({
-  category: z.object({ value: z.string(), label: z.string() }),
+  tag: z.string(),
 });
