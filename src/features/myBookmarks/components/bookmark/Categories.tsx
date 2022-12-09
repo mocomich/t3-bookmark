@@ -1,5 +1,6 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
+import { useRouter } from "next/router";
 import { memo } from "react";
 
 type Props = {
@@ -7,12 +8,17 @@ type Props = {
 };
 
 export const Categories: React.FC<Props> = memo(({ categories }) => {
+  const router = useRouter();
   return (
     <div css={styles.categories}>
       {categories.map((category) => (
-        <div key={category.id} css={styles.category}>
+        <button
+          key={category.id}
+          css={styles.category}
+          onClick={() => router.push(`/mypage/categories/${category.name}`)}
+        >
           {category.name}
-        </div>
+        </button>
       ))}
     </div>
   );
@@ -32,5 +38,6 @@ const styles = {
     borderRadius: "6px",
     boxShadow: BOX_SHADOW.md,
     maxHeight: "30px",
+    cursor: "pointer",
   }),
 };
