@@ -9,7 +9,7 @@ import { Categories } from "./Categories";
 import { Date } from "./Date";
 import { HeadImage } from "./HeadImage";
 import { MemoIcon } from "./MemoIcon";
-import { Tag } from "./Tag";
+import { Tags } from "./Tags";
 
 type MyBookmarkProps = Pick<Bookmark, "id" | "url" | "title" | "updatedAt">;
 
@@ -25,11 +25,7 @@ export const MyBookmark: React.FC<Props> = memo(
       <article css={styles.container}>
         <UtilLink style={styles.head} href={url}>
           <div css={styles.top}>
-            <div css={styles.tags}>
-              {tags?.map((tag) => (
-                <Tag key={tag.id} name={tag.name} />
-              ))}
-            </div>
+            <Tags tags={tags} />
             <MemoIcon id={id} />
           </div>
           <HeadImage imageId={imageId} />
