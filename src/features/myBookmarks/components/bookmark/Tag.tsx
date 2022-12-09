@@ -1,13 +1,23 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
-import { memo } from "react";
+import { useRouter } from "next/router";
+import React, { memo } from "react";
 
 type Props = {
   name?: string;
 };
 
 export const Tag: React.FC<Props> = memo(({ name }) => {
-  return <div css={styles.tag}>{name}</div>;
+  const router = useRouter();
+  const onClickToTags = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    router.push(`/mypage/tags/${name}`);
+  };
+  return (
+    <button css={styles.tag} onClick={onClickToTags}>
+      {name}
+    </button>
+  );
 });
 
 const styles = {
@@ -22,5 +32,6 @@ const styles = {
     borderRadius: "6px",
     color: "white",
     boxShadow: BOX_SHADOW.md,
+    cursor: "pointer",
   }),
 };

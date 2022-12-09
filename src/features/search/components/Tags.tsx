@@ -1,18 +1,24 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import { Tag } from "@prisma/client";
+import { useRouter } from "next/router";
 
 type Props = {
   tags?: Tag[];
 };
 
 export const Tags: React.FC<Props> = ({ tags }) => {
+  const router = useRouter();
   return (
     <div css={styles.container}>
       {tags?.map((tag) => (
-        <span css={styles.category} key={tag.id}>
+        <button
+          css={styles.category}
+          key={tag.id}
+          onClick={() => router.push(`/mypage/tags/${tag.name}`)}
+        >
           {tag.name}
-        </span>
+        </button>
       ))}
     </div>
   );
