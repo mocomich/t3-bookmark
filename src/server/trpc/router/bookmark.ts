@@ -4,6 +4,7 @@ import {
   getBookmarksInputSchema,
   getSingleBookmarkByIdSchema,
   keywordSearchSchema,
+  tagSearchSchema,
   updateBookmarkSchema,
 } from "@/schema";
 import { CreateBookmarkType } from "@/types";
@@ -267,6 +268,28 @@ export const bookmarkRouter = t.router({
           categories: {
             some: {
               name: input.category,
+            },
+          },
+        },
+        include: {
+          categories: true,
+          tags: true,
+        },
+        orderBy: {
+          updatedAt: "desc",
+        },
+      });
+      return bookmarks;
+    }),
+
+  getSearchedBookmarksByTag: authedProcedure
+    .input(tagSearchSchema)
+    .query(async ({ ctx, input }) => {
+      const bookmarks = await ctx.prisma.bookmark.findMany({
+        where: {
+          tags: {
+            some: {
+              name: input.tag,
             },
           },
         },
