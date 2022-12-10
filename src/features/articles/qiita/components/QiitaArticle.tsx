@@ -1,4 +1,5 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
+import { UtilLink } from "@/components/util-elements/UtilLink";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
@@ -14,25 +15,15 @@ export const QiitaArticle: React.FC<Props> = memo(
   ({ title, url, updated_at }) => {
     return (
       <article css={styles.container}>
-        <a
-          css={styles.left}
-          href={url}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <UtilLink href={url} style={styles.left}>
           <Image
             width={40}
             height={40}
             src={"/assets/qiita.png"}
             alt='Qiita LOGO'
           />
-        </a>
-        <a
-          href={url}
-          target='_blank'
-          rel='noopener noreferrer'
-          css={styles.right}
-        >
+        </UtilLink>
+        <UtilLink href={url} style={styles.right}>
           <div css={styles.title}>
             <TypoGraphy variant='h3' isResponsive>
               {title}
@@ -43,7 +34,7 @@ export const QiitaArticle: React.FC<Props> = memo(
               {format(parseISO(updated_at), "MM月dd日")}
             </TypoGraphy>
           </div>
-        </a>
+        </UtilLink>
       </article>
     );
   }
@@ -65,7 +56,7 @@ const styles = {
     columnGap: "20px",
     padding: "12px 20px",
   }),
-  left: {
+  left: css({
     background: COLORS.offWhite,
     boxShadow: BOX_SHADOW.md,
     borderRadius: "1000px",
@@ -75,7 +66,7 @@ const styles = {
     justifyContent: "center",
     cursor: "pointer",
     width: "100%",
-  },
+  }),
   right: css({
     width: "100%",
     height: "100%",
