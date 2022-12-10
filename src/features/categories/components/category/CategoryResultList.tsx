@@ -4,10 +4,10 @@ import { NoDataMessage } from "@/features/search/components/NoDataMessage";
 import { sp, tab, vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 
-import { useQueryBookmarks } from "../../hooks/useQueryBookmarks";
+import { useQueryBookmarksByCategory } from "../../hooks/useQueryBookmarksByCategory";
 
 export const CategorySearchResultList: React.FC = () => {
-  const { bookmarks, query } = useQueryBookmarks();
+  const { bookmarks, query } = useQueryBookmarksByCategory();
   if (bookmarks && bookmarks.length < 1)
     return (
       <>

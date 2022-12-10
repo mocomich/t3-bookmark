@@ -2,7 +2,7 @@ import { getQuery } from "@/utils/libs";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 
-export const useQueryBookmarks = () => {
+export const useQueryBookmarksByCategory = () => {
   const router = useRouter();
   const query = getQuery(router.query.category);
 
