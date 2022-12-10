@@ -1,5 +1,5 @@
 import { Space } from "@/components/util-elements/Space";
-import { TopicTitle } from "@/features/categories/components/category/TopicTitle";
+import { TopicTitle } from "@/components/util-parts/TopicTitle";
 import { TagSearchResult } from "@/features/tags/components/tags/TagSearchResult";
 import { useQueryBookmarks } from "@/features/tags/hooks/useQueryBookmarks";
 import { NextPage } from "next";
