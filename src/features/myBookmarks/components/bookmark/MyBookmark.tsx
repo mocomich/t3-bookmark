@@ -2,7 +2,7 @@ import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
 import { UtilLink } from "@/components/util-elements/UtilLink";
 import { BOX_SHADOW } from "@/styles/config/utils";
 import { css } from "@emotion/react";
-import { Bookmark } from "@prisma/client";
+import { Bookmark, Category, Tag } from "@prisma/client";
 import { memo } from "react";
 
 import { Categories } from "./Categories";
@@ -15,8 +15,8 @@ type MyBookmarkProps = Pick<Bookmark, "id" | "url" | "title" | "updatedAt">;
 
 type Props = {
   imageId: number;
-  categories: { id: string; name: string }[];
-  tags?: { id: string; name: string }[];
+  categories: Category[];
+  tags?: Tag[];
 } & MyBookmarkProps;
 
 export const MyBookmark: React.FC<Props> = memo(

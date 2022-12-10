@@ -1,11 +1,11 @@
 import { Space } from "@/components/util-elements/Space";
 import { TopicTitle } from "@/components/util-parts/TopicTitle";
 import { TagSearchResult } from "@/features/tags/components/tags/TagSearchResult";
-import { useQueryBookmarks } from "@/features/tags/hooks/useQueryBookmarks";
+import { useQueryBookmarksByTags } from "@/features/tags/hooks/useQueryBookmarksByTags";
 import { NextPage } from "next";
 
 const TagPage: NextPage = () => {
-  const { query } = useQueryBookmarks();
+  const { query } = useQueryBookmarksByTags();
 
   return (
     <section>

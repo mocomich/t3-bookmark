@@ -9,6 +9,7 @@ export const PATH_LIST = {
   edit: "/mypage/edit",
   search: "/mypage/search",
   categories: "/mypage/categories",
+  tags: "/mypage/tags",
   allBookmarks: "/mypage/bookmarks/all",
   unreadBookmarks: "/mypage/bookmarks/unread",
   readBookmarks: "/mypage/bookmarks/read",
