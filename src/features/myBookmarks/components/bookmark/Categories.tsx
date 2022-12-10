@@ -1,24 +1,21 @@
-import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { CategoryComponent } from "@/components/util-parts/category/CategoryComponent";
 import { css } from "@emotion/react";
-import { useRouter } from "next/router";
+import { Category } from "@prisma/client";
 import { memo } from "react";
 
 type Props = {
-  categories: { id: string; name: string }[];
+  categories: Category[];
 };
 
 export const Categories: React.FC<Props> = memo(({ categories }) => {
-  const router = useRouter();
   return (
     <div css={styles.categories}>
       {categories.map((category) => (
-        <button
+        <CategoryComponent
           key={category.id}
-          css={styles.category}
-          onClick={() => router.push(`/mypage/categories/${category.name}`)}
-        >
-          {category.name}
-        </button>
+          name={category.name}
+          size='medium'
+        />
       ))}
     </div>
   );
@@ -29,15 +26,5 @@ const styles = {
     display: "flex",
     flexWrap: "wrap",
     gap: "6px",
-  }),
-  category: css({
-    fontSize: "14px",
-    padding: "4px 6px",
-    color: "white",
-    background: COLORS.blue,
-    borderRadius: "6px",
-    boxShadow: BOX_SHADOW.md,
-    maxHeight: "30px",
-    cursor: "pointer",
   }),
 };

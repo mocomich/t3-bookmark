@@ -1,11 +1,11 @@
 import { Space } from "@/components/util-elements/Space";
 import { TopicTitle } from "@/components/util-parts/TopicTitle";
 import { CategorySearchResult } from "@/features/categories/components/category/CategorySearchResult";
-import { useQueryBookmarks } from "@/features/categories/hooks/useQueryBookmarks";
+import { useQueryBookmarksByCategory } from "@/features/categories/hooks/useQueryBookmarksByCategory";
 import { NextPage } from "next";
 
 const CategoryPage: NextPage = () => {
-  const { query } = useQueryBookmarks();
+  const { query } = useQueryBookmarksByCategory();
 
   return (
     <section>
