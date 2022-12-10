@@ -1,4 +1,4 @@
-import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { BOX_SHADOW, COLORS, HOVERED_COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import { memo } from "react";
 
@@ -22,6 +22,10 @@ export const Button: React.FC<Props> = memo(
       background: COLORS[color],
       border: color === "offWhite" ? `1px solid ${COLORS.lightGray}` : "",
       boxShadow: BOX_SHADOW.md,
+      ":hover": {
+        background: HOVERED_COLORS[color],
+        transition: "background 0.3s ease",
+      },
     });
 
     const styles = {

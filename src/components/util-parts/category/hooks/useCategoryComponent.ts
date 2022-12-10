@@ -1,4 +1,4 @@
-import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { BOX_SHADOW, COLORS, HOVERED_COLORS } from "@/styles/config/utils";
 import { PATH_LIST } from "@/utils/const";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
@@ -15,6 +15,10 @@ export const useCategoryComponent = (size: "medium" | "large") => {
     boxShadow: BOX_SHADOW.md,
     fontSize: isMedium ? "14px" : "16px",
     padding: isMedium ? "4px 6px" : "6px 12px",
+    ":hover": {
+      background: HOVERED_COLORS.blue,
+      transition: "background 0.3s ease",
+    },
   });
 
   const mediumStyle = css({

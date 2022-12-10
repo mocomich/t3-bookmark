@@ -10,6 +10,14 @@ export const COLORS = {
   red: "#EF5350",
 };
 
+export const HOVERED_COLORS = {
+  ...COLORS,
+  offWhite: "#fff",
+  green: "#00838F",
+  blue: "#025f97",
+  orange: "#ff8f00",
+};
+
 export const BOX_SHADOW = {
   md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
   lg: "rgba(0, 0, 0, 0.24) 0px 3px 8px",

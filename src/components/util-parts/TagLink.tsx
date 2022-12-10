@@ -19,5 +19,10 @@ const styles = {
     fontWeight: "bold",
     cursor: "pointer",
     textDecoration: "underline",
+    lineHeight: 1.6,
+    ":hover": {
+      opacity: 0.7,
+      transition: "opacity 0.3s ease",
+    },
   }),
 };

@@ -30,6 +30,10 @@ const styles = {
     background: COLORS.green,
     display: "inline-block",
     boxShadow: BOX_SHADOW.md,
+    ":hover": {
+      background: COLORS.deepGreen,
+      transition: "backGround 0.3s ease",
+    },
   }),
   icon: css({
     fontSize: "24px",

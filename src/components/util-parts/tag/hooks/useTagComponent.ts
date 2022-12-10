@@ -1,4 +1,4 @@
-import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { BOX_SHADOW, COLORS, HOVERED_COLORS } from "@/styles/config/utils";
 import { PATH_LIST } from "@/utils/const";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
@@ -20,6 +20,10 @@ export const useTagComponent = (size: "medium" | "large") => {
     fontWeight: "bold",
     fontSize: isMedium ? "12px" : "16px",
     padding: isMedium ? "4px 8px" : "6px 12px",
+    ":hover": {
+      background: HOVERED_COLORS.orange,
+      transition: "background 0.3s ease",
+    },
   });
 
   const mediumStyle = css({
