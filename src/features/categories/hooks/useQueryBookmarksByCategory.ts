@@ -1,15 +1,24 @@
 import { getQuery } from "@/utils/libs";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 
 export const useQueryBookmarksByCategory = () => {
   const router = useRouter();
   const query = getQuery(router.query.category);
 
-  const { data: bookmarks } =
-    trpc.bookmark.getSearchedBookmarksByCategory.useQuery({
-      category: query,
-    });
+  const { data, hasNextPage, fetchNextPage } =
+    trpc.bookmark.getSearchedBookmarksByCategory.useInfiniteQuery(
+      {
+        category: query,
+      },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+      }
+    );
+  const onClickHandler = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
 
-  return { bookmarks, query };
+  return { data, hasNextPage, query, onClickHandler };
 };

@@ -71,6 +71,8 @@ export const keywordSearchSchema = z.object({
 
 export const categorySearchSchema = z.object({
   category: z.string(),
+  limit: z.number().min(1).max(100).nullish(),
+  cursor: z.string().nullish(),
 });
 
 export const tagSearchSchema = z.object({
