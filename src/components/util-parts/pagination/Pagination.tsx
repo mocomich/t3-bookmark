@@ -1,4 +1,4 @@
-import { COLORS } from "@/styles/config/utils";
+import { COLORS, HOVERED_COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import { memo } from "react";
 
@@ -52,6 +52,10 @@ const styles = {
       padding: "6px 0",
       color: "white",
       borderRadius: "6px",
+      ":hover": {
+        background: HOVERED_COLORS.green,
+        transition: "background 0.3s ease",
+      },
     },
   }),
 };
