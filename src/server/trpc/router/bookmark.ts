@@ -245,6 +245,7 @@ export const bookmarkRouter = t.router({
     .query(async ({ ctx, input }) => {
       const bookmarks = await ctx.prisma.bookmark.findMany({
         where: {
+          userId: ctx.session?.user?.id,
           title: {
             contains: input.keyword,
           },
@@ -265,6 +266,7 @@ export const bookmarkRouter = t.router({
     .query(async ({ ctx, input }) => {
       const bookmarks = await ctx.prisma.bookmark.findMany({
         where: {
+          userId: ctx.session?.user?.id,
           categories: {
             some: {
               name: input.category,
@@ -287,6 +289,7 @@ export const bookmarkRouter = t.router({
     .query(async ({ ctx, input }) => {
       const bookmarks = await ctx.prisma.bookmark.findMany({
         where: {
+          userId: ctx.session?.user?.id,
           tags: {
             some: {
               name: input.tag,
