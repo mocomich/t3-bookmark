@@ -288,6 +288,7 @@ export const bookmarkRouter = t.router({
       let nextCursor: typeof cursor | undefined = undefined;
       if (bookmarks.length > limit) {
         const nextItem = bookmarks.pop();
+        /* eslint-disable @typescript-eslint/no-non-null-assertion */
         nextCursor = nextItem!.id;
       }
       return {
@@ -323,6 +324,7 @@ export const bookmarkRouter = t.router({
 const _remove = (
   obj: CreateBookmarkType
 ): Omit<CreateBookmarkType, "categories" | "tags"> => {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const { categories, tags, ...data } = obj;
   return data;
 };
