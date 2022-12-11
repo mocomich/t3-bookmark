@@ -6,9 +6,7 @@ import { useModal } from "@/utils/hooks/useModal";
 import { useNavigation } from "@/utils/hooks/useNavigation";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { memo, useCallback } from "react";
-import { GrSearch } from "react-icons/gr";
 
 import { Logo } from "../Logo";
 import { Avatar } from "./Avatar";
