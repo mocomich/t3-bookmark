@@ -79,6 +79,7 @@ const slideLeftAndFade = keyframes({
 
 const styles = {
   content: css({
+    zIndex: 100,
     background: "white",
     minWidth: "160px",
     borderRadius: 6,
