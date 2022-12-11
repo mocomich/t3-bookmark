@@ -7,12 +7,14 @@ import { useNavigation } from "@/utils/hooks/useNavigation";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { GrSearch } from "react-icons/gr";
 
+import { Logo } from "../Logo";
 import { Avatar } from "./Avatar";
 import { DropdownMenu } from "./DropDownMenu";
 import { LoginModal } from "./LoginModal";
+import { SearchIcon } from "./SearchIcon";
 
 export const Header: React.FC = memo(() => {
   const { data: session } = useSession();
@@ -20,25 +22,19 @@ export const Header: React.FC = memo(() => {
 
   const { navigate } = useNavigation();
 
+  const onClickHandler = useCallback(() => {
+    navigate(PATH_LIST["search"]);
+  }, [navigate]);
+
   return (
     <header css={styles.header}>
       <div css={styles.headerInner}>
-        <button onClick={() => navigate(PATH_LIST["home"])}>
-          <Image
-            css={styles.image}
-            src={`/assets/logo.png`}
-            width={124}
-            height={36}
-            alt='犬のアイコン画像'
-          />
-        </button>
+        <Logo />
         <nav>
           <ul css={styles.links}>
             {session?.user?.image && (
               <>
-                <button onClick={() => navigate(PATH_LIST["search"])}>
-                  <GrSearch css={styles.icon} size={28} />
-                </button>
+                <SearchIcon onClick={onClickHandler} />
                 <DropdownMenu
                   triggerComponent={<Avatar imageUrl={session?.user?.image} />}
                 />
@@ -82,10 +78,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: vwCalcFn(32),
-  }),
-  icon: css({
-    cursor: "pointer",
-    padding: "2px",
   }),
   image: css({
     cursor: "pointer",
