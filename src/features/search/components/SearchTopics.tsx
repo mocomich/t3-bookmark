@@ -17,6 +17,7 @@ export const SearchTopics: React.FC<Props> = memo(({ keyword }) => {
     <>
       <TypoGraphy variant='h3'>カテゴリー検索</TypoGraphy>
       <Categories categories={filteredCategories} />
+      <Space axis='HORIZONTAL' size={20} />
       <TypoGraphy variant='h3'>タグ検索</TypoGraphy>
       <Tags tags={filteredTags} />
       <Space axis='HORIZONTAL' size={20} />

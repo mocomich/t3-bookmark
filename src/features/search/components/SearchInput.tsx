@@ -1,4 +1,5 @@
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { sp } from "@/styles/mixin";
 import { css } from "@emotion/react";
 import { memo, useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -71,5 +72,9 @@ const styles = {
       background: COLORS.lightGray,
       padding: "2px",
       borderRadius: "6px",
+
+      [sp]: {
+        display: "none",
+      },
     }),
 };

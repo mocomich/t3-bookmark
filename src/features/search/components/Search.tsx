@@ -19,7 +19,7 @@ export const Search = () => {
         onSubmit={onSubmitHandler}
         register={register("keyword")}
       />
-      <Space axis='VERTICAL' size={40} />
+      <Space axis='VERTICAL' size={20} isResponsive />
       {isEmptyQuery && keywordQuery !== "" ? (
         <SearchResult />
       ) : (

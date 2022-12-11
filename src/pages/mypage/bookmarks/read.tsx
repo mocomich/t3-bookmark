@@ -24,7 +24,7 @@ const ReadBookmarks: NextPage = () => {
   return (
     <div>
       <MyBookmarkLinks />
-      <Space axis='VERTICAL' size={80} />
+      <Space axis='VERTICAL' size={80} isResponsive />
       <ReadMyBookmarks />
       <Space axis='VERTICAL' size={40} />
     </div>
