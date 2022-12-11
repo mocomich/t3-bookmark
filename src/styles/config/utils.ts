@@ -13,7 +13,7 @@ export const COLORS = {
 export const HOVERED_COLORS = {
   ...COLORS,
   offWhite: "#fff",
-  green: "#00838F",
+  green: "#006972",
   blue: "#025f97",
   orange: "#ff8f00",
 };
