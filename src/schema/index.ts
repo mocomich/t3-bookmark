@@ -67,6 +67,8 @@ export const deleteTagSchema = z.object({
 
 export const keywordSearchSchema = z.object({
   keyword: z.string(),
+  limit: z.number().min(1).max(100).nullish(),
+  cursor: z.string().nullish(),
 });
 
 export const categorySearchSchema = z.object({

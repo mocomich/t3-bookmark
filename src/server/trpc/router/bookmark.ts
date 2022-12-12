@@ -243,7 +243,10 @@ export const bookmarkRouter = t.router({
   getSearchedBookmarksByKeyword: authedProcedure
     .input(keywordSearchSchema)
     .query(async ({ ctx, input }) => {
+      const limit = input.limit ?? DEFAULT_LIMIT;
+      const { cursor } = input;
       const bookmarks = await ctx.prisma.bookmark.findMany({
+        take: limit + 1,
         where: {
           userId: ctx.session?.user?.id,
           title: {
@@ -254,11 +257,21 @@ export const bookmarkRouter = t.router({
           categories: true,
           tags: true,
         },
+        cursor: cursor ? { id: cursor } : undefined,
         orderBy: {
           updatedAt: "desc",
         },
       });
-      return bookmarks;
+      let nextCursor: typeof cursor | undefined = undefined;
+      if (bookmarks.length > limit) {
+        const nextItem = bookmarks.pop();
+        /* eslint-disable @typescript-eslint/no-non-null-assertion */
+        nextCursor = nextItem!.id;
+      }
+      return {
+        bookmarks,
+        nextCursor,
+      };
     }),
 
   getSearchedBookmarksByCategory: authedProcedure
