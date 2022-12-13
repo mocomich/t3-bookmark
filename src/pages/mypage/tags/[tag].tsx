@@ -1,7 +1,7 @@
 import { Space } from "@/components/util-elements/Space";
 import { TopicTitle } from "@/components/util-parts/TopicTitle";
 import { TagSearchResult } from "@/features/tags/components/tags/TagSearchResult";
-import { useQueryBookmarksByTags } from "@/features/tags/hooks/useQueryBookmarksByTags";
+import { useQueryBookmarksByTag } from "@/features/tags/hooks/useQueryBookmarksByTag";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
@@ -22,7 +22,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 const TagPage: NextPage = () => {
-  const { query } = useQueryBookmarksByTags();
+  const { query } = useQueryBookmarksByTag();
 
   return (
     <section>
