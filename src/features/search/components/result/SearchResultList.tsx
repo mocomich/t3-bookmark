@@ -1,6 +1,5 @@
 import { Button } from "@/components/util-elements/Button";
 import { Space } from "@/components/util-elements/Space";
-import { useQueryBookmarksByCategory } from "@/features/categories/hooks/useQueryBookmarksByCategory";
 import { sp, tab, vwCalcFn } from "@/styles/mixin";
 import { css } from "@emotion/react";
 
