@@ -12,7 +12,7 @@ export const Zenn: React.FC = memo(() => {
   return (
     <div css={styles.container}>
       <div css={styles.space} />
-      <ArticlesTitle path='https://zenn.dev'>Zenn Article</ArticlesTitle>
+      <ArticlesTitle path='https://zenn.dev'>Zenn Articles</ArticlesTitle>
       <div css={styles.space} />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback={<PulseArticleList count={6} />}>

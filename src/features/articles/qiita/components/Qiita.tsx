@@ -12,7 +12,7 @@ export const Qiita: React.FC = memo(() => {
   return (
     <div css={styles.container}>
       <div css={styles.space} />
-      <ArticlesTitle path='https://qiita.com/'>Qiita Article</ArticlesTitle>
+      <ArticlesTitle path='https://qiita.com/'>Qiita Articles</ArticlesTitle>
       <div css={styles.space} />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback={<PulseArticleList count={6} />}>
