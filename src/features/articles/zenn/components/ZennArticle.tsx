@@ -1,4 +1,5 @@
 import { TypoGraphy } from "@/components/util-elements/TypoGraphy";
+import { UtilLink } from "@/components/util-elements/UtilLink";
 import { ZennArticleType } from "@/features/articles/zenn/types";
 import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
 import { sp } from "@/styles/mixin";
@@ -12,20 +13,10 @@ export const ZennArticle: React.FC<Props> = memo(
   ({ title, path, emoji, publishedAt }) => {
     return (
       <article css={styles.container}>
-        <a
-          css={styles.left}
-          href={`https://zenn.dev/${path}`}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <UtilLink style={styles.left} href={`https://zenn.dev/${path}`}>
           {emoji}
-        </a>
-        <a
-          css={styles.right}
-          href={`https://zenn.dev/${path}`}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        </UtilLink>
+        <UtilLink style={styles.right} href={`https://zenn.dev/${path}`}>
           <div css={styles.title}>
             <TypoGraphy variant='h3' isResponsive>
               {title}
@@ -36,7 +27,7 @@ export const ZennArticle: React.FC<Props> = memo(
               {format(parseISO(publishedAt), "MM月dd日")}
             </TypoGraphy>
           </div>
-        </a>
+        </UtilLink>
       </article>
     );
   }
@@ -59,7 +50,7 @@ const styles = {
     columnGap: "20px",
     padding: "12px 20px",
   }),
-  left: {
+  left: css({
     background: COLORS.offWhite,
     boxShadow: BOX_SHADOW.md,
     borderRadius: "1000px",
@@ -73,7 +64,7 @@ const styles = {
       fontSize: "30px",
     },
     cursor: "pointer",
-  },
+  }),
   right: css({
     width: "100%",
     height: "100%",
