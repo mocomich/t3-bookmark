@@ -21,6 +21,10 @@ export const useSearchBookmark = () => {
     () => Boolean(Object.keys(router.query).length),
     [router.query]
   );
+  const keywordQuery = useMemo(
+    () => _getKeyword(router.query.keyword),
+    [router.query.keyword]
+  );
 
   const onSubmitHandler = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -51,6 +55,7 @@ export const useSearchBookmark = () => {
 
   return {
     keyword,
+    keywordQuery,
     isEmptyQuery,
     onSubmitHandler,
     register,
