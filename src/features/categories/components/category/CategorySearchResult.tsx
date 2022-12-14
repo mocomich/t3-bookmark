@@ -1,5 +1,5 @@
+import { Spinner } from "@/components/util-elements/Spinner";
 import { ErrorFallback } from "@/components/util-parts/ErrorBoundary";
-import { PulseBookmarkList } from "@/components/util-parts/pulse/PulseBookmarkList";
 import { css } from "@emotion/react";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -10,7 +10,7 @@ export const CategorySearchResult = () => {
   return (
     <section css={styles.container}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Suspense fallback={<PulseBookmarkList count={6} />}>
+        <Suspense fallback={<Spinner />}>
           <CategorySearchResultList />
         </Suspense>
       </ErrorBoundary>
