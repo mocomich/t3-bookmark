@@ -70,11 +70,15 @@ const styles = {
     height: "100%",
     display: "grid",
     alignContent: "space-between",
+    ":hover": {
+      h3: {
+        textDecoration: "underLine",
+      },
+    },
   }),
   title: css({
     fontSize: "20px",
     fontWeight: "bold",
-    textDecoration: "underLine",
   }),
   bottom: css({
     justifySelf: "flex-end",
