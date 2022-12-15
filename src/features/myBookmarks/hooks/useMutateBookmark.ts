@@ -22,8 +22,22 @@ export const useMutateBookmark = () => {
     },
   });
 
+  const deleteBookmarkMutation = trpc.bookmark.deleteBookmarkById.useMutation({
+    onSuccess: (_, variable) => {
+      const previousBookmarks =
+        utils.bookmark.getAllBookmarksByUserId.getData();
+
+      if (previousBookmarks) {
+        utils.bookmark.getAllBookmarksByUserId.setData(
+          previousBookmarks.filter((bookmark) => bookmark.id !== variable.id)
+        );
+      }
+    },
+  });
+
   return {
     createBookmarkMutation,
     updateBookmarkMutation,
+    deleteBookmarkMutation,
   };
 };
