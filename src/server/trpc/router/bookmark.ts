@@ -1,6 +1,7 @@
 import {
   categorySearchSchema,
   createBookmarkSchema,
+  deleteBookmarkSchema,
   getBookmarksInputSchema,
   getSingleBookmarkByIdSchema,
   keywordSearchSchema,
@@ -344,6 +345,16 @@ export const bookmarkRouter = t.router({
         bookmarks,
         nextCursor,
       };
+    }),
+
+  deleteBookmarkById: authedProcedure
+    .input(deleteBookmarkSchema)
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.bookmark.delete({
+        where: {
+          id: input.id,
+        },
+      });
     }),
 });
 
