@@ -1,4 +1,4 @@
-import { BOX_SHADOW, COLORS } from "@/styles/config/utils";
+import { BOX_SHADOW, COLORS, HOVERED_COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import { Tag } from "@prisma/client";
 import { memo } from "react";
@@ -35,10 +35,14 @@ const styles = {
     gap: "8px",
     alignItems: "center",
     fontWeight: "bold",
-    padding: "6px 12px",
+    padding: "6px 6px 6px 12px",
     borderRadius: "6px",
     color: "white",
     background: COLORS.orange,
     boxShadow: BOX_SHADOW.md,
+    ":hover": {
+      background: HOVERED_COLORS["orange"],
+      transition: "background 0.3s ease",
+    },
   }),
 };
