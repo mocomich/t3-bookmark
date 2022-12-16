@@ -10,7 +10,7 @@ export const DeleteButton: React.FC<Props> = ({ onClick }) => {
   return (
     <div className='w-12' css={styles.delete}>
       <Button size='medium' color='red' type='button' onClick={onClick}>
-        <MdDeleteForever id='mdDeleteForever' size={24} />
+        <MdDeleteForever size={24} />
       </Button>
     </div>
   );
