@@ -60,7 +60,14 @@ export const useEditForm = ({ bookmark }: Props) => {
   );
 
   const onClickHandler = useCallback(() => {
-    id && deleteBookmarkMutation.mutate({ id });
+    if (typeof id === "undefined") {
+      return;
+    }
+    const isConfirm = window.confirm("本当に削除しても宜しいですか？");
+    if (!isConfirm) return;
+
+    deleteBookmarkMutation.mutate({ id });
+
     router.push(PATH_LIST["allBookmarks"]);
   }, [router, deleteBookmarkMutation, id]);
 
