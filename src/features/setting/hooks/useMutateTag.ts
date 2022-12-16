@@ -7,7 +7,7 @@ export const useMutateTag = () => {
     onSuccess: (res) => {
       const previousTags = utils.tag.getAllTags.getData();
       if (previousTags) {
-        utils.tag.getAllTags.setData([res, ...previousTags]);
+        utils.tag.getAllTags.setData([...previousTags, res]);
       }
     },
   });
