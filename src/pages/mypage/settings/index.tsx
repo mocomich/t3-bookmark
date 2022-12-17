@@ -24,9 +24,9 @@ const SettingsPage: NextPage = () => {
   return (
     <div>
       <SettingLinks />
-      <Space axis='VERTICAL' size={80} />
+      <Space axis='VERTICAL' size={80} isResponsive />
       <Setting />
-      <Space axis='VERTICAL' size={40} />
+      <Space axis='VERTICAL' size={40} isResponsive />
     </div>
   );
 };
