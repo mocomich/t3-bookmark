@@ -10,10 +10,10 @@ import { memo } from "react";
 import { FormProvider } from "react-hook-form";
 
 import { useEditForm } from "../../hooks/useEditForm";
+import { DeleteButton } from "./DeleteButton";
 import { FormContent } from "./FormContent";
 import { TextInput } from "./TextInput";
 import { CategorySelect } from "./category/CategorySelect";
-import { DeleteButton } from "./deleteButton";
 import { ToggleSwitch } from "./isRead/ToogleSwitch";
 import { MemoForm } from "./memo/MemoForm";
 import { TagSelect } from "./tag/TagSelect";
