@@ -27,7 +27,7 @@ export const Setting = () => {
 
 const styles = {
   container: css({
-    width: "80%",
+    maxWidth: "1120px",
     margin: "0 auto",
     height: "100%",
     padding: "40px",
