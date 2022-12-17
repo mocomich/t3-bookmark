@@ -12,7 +12,16 @@ const languages = [
   "Kotlin",
 ];
 
-const frameworks = ["React", "Vue", "Solid", "Laravel", "Rails"];
+const frameworks = [
+  "React",
+  "Vue",
+  "Solid",
+  "Laravel",
+  "Rails",
+  "Next.js",
+  "Nuxt.js",
+  "Remix",
+];
 
 const categories = [...sketchyGenres, ...languages, ...frameworks].map(
   (genre) => ({
