@@ -1,9 +1,8 @@
+import { TabTitle } from "@/components/util-parts/tab/TabTitle";
 import { LAYOUT_WIDTH } from "@/styles/config/sizes";
 import { COLORS } from "@/styles/config/utils";
 import { css } from "@emotion/react";
 import * as Tabs from "@radix-ui/react-tabs";
-
-import { TabTitle } from "./TabTitle";
 
 type Props = {
   defaultKey: string;
