@@ -15,7 +15,7 @@ type Props = {
   >;
 };
 
-export const Tab: React.FC<Props> = ({ defaultKey, tabs }) => (
+export const TabComponent: React.FC<Props> = ({ defaultKey, tabs }) => (
   <Tabs.Root css={styles.container} defaultValue={defaultKey}>
     <Tabs.List css={styles.tabList} aria-label='Find Articles'>
       <div css={styles.tabListInner}>

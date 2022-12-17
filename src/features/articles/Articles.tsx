@@ -1,4 +1,4 @@
-import { Tab } from "@/components/util-parts/tab/Tab";
+import { TabComponent } from "@/components/util-parts/tab/TabComponent";
 import React from "react";
 
 import { Qiita } from "./qiita/components/Qiita";
@@ -10,5 +10,5 @@ const tabs = [
 ] as const;
 
 export const Articles: React.FC = () => {
-  return <Tab defaultKey='zenn' tabs={tabs} />;
+  return <TabComponent defaultKey='zenn' tabs={tabs} />;
 };
