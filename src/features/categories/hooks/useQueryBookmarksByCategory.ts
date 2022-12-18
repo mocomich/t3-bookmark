@@ -14,6 +14,7 @@ export const useQueryBookmarksByCategory = () => {
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextCursor,
+        suspense: true,
       }
     );
   const onClickHandler = useCallback(() => {
